@@ -1,0 +1,2241 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#0D0E0C" />
+    <title>yourname – Digital studio for web &amp; apps</title>
+    <meta
+      name="description"
+      content="Modern websites, online shops and custom web applications from a digital studio in Germany, working worldwide."
+    />
+    <script>
+      /* Language pick, run before the first paint. Order: 1) a language the
+         visitor chose by hand (saved), 2) the browser languages, matched by
+         prefix (de-AT -> de, tr-TR -> tr), 3) English. No IP lookup, no
+         third-party calls. js/app.js reads window.I18N. */
+      (function () {
+        var I = (window.I18N = {
+          langs: ["de", "en", "tr"],
+          key: "langPick",
+          pick: function () {
+            var s = null;
+            try {
+              s = localStorage.getItem(I.key);
+            } catch (e) {}
+            if (I.langs.indexOf(s) > -1) return s;
+            var n = navigator.languages || [navigator.language || ""];
+            for (var i = 0; i < n.length; i++) {
+              var p = String(n[i] || "")
+                .toLowerCase()
+                .split("-")[0];
+              if (I.langs.indexOf(p) > -1) return p;
+            }
+            return "en";
+          },
+        });
+        var d = document.documentElement;
+        I.lang = I.pick();
+        d.lang = I.lang;
+        /* the static HTML is English: hide translatable text until js/app.js
+           has swapped it, so other languages never flash English */
+        if (I.lang !== "en") {
+          d.classList.add("i18n-wait");
+          setTimeout(function () {
+            d.classList.remove("i18n-wait");
+          }, 3000);
+        }
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Syne:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="pre" id="pre" aria-hidden="true">
+      <div class="pre-num" id="preNum">0</div>
+      <div class="pre-bar"><i></i></div>
+      <div class="pre-row">
+        <span>yourname</span><span>Digital studio</span>
+      </div>
+    </div>
+    <script>
+      try {
+        if (sessionStorage.getItem("pre")) {
+          document.getElementById("pre").remove();
+        } else {
+          document.documentElement.classList.add("pre-on");
+        }
+      } catch (e) {}
+    </script>
+
+    <header class="nav-wrap" id="navWrap">
+      <nav class="nav" aria-label="Main" data-i18n-al="al_main">
+        <div class="brand">
+          <a href="#top" class="logo" aria-label="Home" data-i18n-al="al_home">
+            <span class="logo-mark">YN</span
+            ><span class="logo-text">yourname</span>
+          </a>
+        </div>
+
+        <ul class="links" id="links">
+          <li>
+            <a href="#work"
+              ><span class="roll" data-t="Work"
+                ><span data-i18n="work">Work</span></span
+              ></a
+            >
+          </li>
+          <li>
+            <a href="#services"
+              ><span class="roll" data-t="Services"
+                ><span data-i18n="services">Services</span></span
+              ></a
+            >
+          </li>
+          <li>
+            <a href="#why"
+              ><span class="roll" data-t="Why us"
+                ><span data-i18n="why">Why us</span></span
+              ></a
+            >
+          </li>
+          <li>
+            <a href="#pricing"
+              ><span class="roll" data-t="Pricing"
+                ><span data-i18n="pricing">Pricing</span></span
+              ></a
+            >
+          </li>
+          <li>
+            <a href="#contact"
+              ><span class="roll" data-t="Contact"
+                ><span data-i18n="contact">Contact</span></span
+              ></a
+            >
+          </li>
+        </ul>
+
+        <div class="right">
+          <button
+            class="kbd"
+            id="kbd"
+            type="button"
+            aria-label="Open command menu"
+            data-i18n-al="al_kbd"
+          >
+            <span id="kbdKey">Ctrl</span>K
+          </button>
+          <!-- Language switch (DE / EN / TR). Hidden only while LANG_LOCK is set in js/app.js. -->
+          <div
+            class="lang"
+            role="group"
+            aria-label="Language"
+            data-i18n-al="lang_g"
+          >
+            <button
+              type="button"
+              data-set="de"
+              lang="de"
+              aria-label="Deutsch"
+              aria-pressed="false"
+            >
+              DE</button
+            ><i></i
+            ><button
+              type="button"
+              data-set="en"
+              lang="en"
+              aria-label="English"
+              aria-pressed="true"
+            >
+              EN</button
+            ><i></i
+            ><button
+              type="button"
+              data-set="tr"
+              lang="tr"
+              aria-label="Türkçe"
+              aria-pressed="false"
+            >
+              TR
+            </button>
+          </div>
+          <a class="cta cta-bar" href="#pricing" data-magnet>
+            <span class="fill"></span
+            ><span class="roll" data-t="Get a quote"
+              ><span data-i18n="cta" data-i18n-m="cta_m"
+                >Get a quote</span
+              ></span
+            >
+          </a>
+          <!-- Phones: language + menu share one capsule (utilities), the CTA stands alone -->
+          <div class="ctl">
+            <!-- current language, opens a small picker -->
+            <div class="lang-m">
+              <button
+                class="lang-mb"
+                id="langMB"
+                type="button"
+                aria-expanded="false"
+                aria-controls="langPop"
+                aria-label="Language: English"
+              >
+                <span id="langMT">EN</span>
+              </button>
+              <div
+                class="lang-pop"
+                id="langPop"
+                role="group"
+                aria-label="Language"
+                data-i18n-al="lang_g"
+                hidden
+              >
+                <button
+                  type="button"
+                  data-set="de"
+                  lang="de"
+                  aria-pressed="false"
+                >
+                  Deutsch</button
+                ><button
+                  type="button"
+                  data-set="en"
+                  lang="en"
+                  aria-pressed="true"
+                >
+                  English</button
+                ><button
+                  type="button"
+                  data-set="tr"
+                  lang="tr"
+                  aria-pressed="false"
+                >
+                  Türkçe
+                </button>
+              </div>
+            </div>
+            <button
+              class="burger"
+              id="burger"
+              aria-label="Menu"
+              data-i18n-al="al_menu"
+              aria-expanded="false"
+              aria-controls="menu"
+            >
+              <span></span><span></span>
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <div class="menu" id="menu" inert>
+        <nav aria-label="Mobile" data-i18n-al="al_mobile">
+          <ul>
+            <li>
+              <a href="#work"
+                ><span class="mask"
+                  ><span style="--i: 0" data-i18n="work">Work</span></span
+                ></a
+              >
+            </li>
+            <li>
+              <a href="#services"
+                ><span class="mask"
+                  ><span style="--i: 1" data-i18n="services"
+                    >Services</span
+                  ></span
+                ></a
+              >
+            </li>
+            <li>
+              <a href="#why"
+                ><span class="mask"
+                  ><span style="--i: 2" data-i18n="why">Why us</span></span
+                ></a
+              >
+            </li>
+            <li>
+              <a href="#pricing"
+                ><span class="mask"
+                  ><span style="--i: 3" data-i18n="pricing">Pricing</span></span
+                ></a
+              >
+            </li>
+            <li>
+              <a href="#contact"
+                ><span class="mask"
+                  ><span style="--i: 4" data-i18n="contact">Contact</span></span
+                ></a
+              >
+            </li>
+          </ul>
+        </nav>
+        <div class="menu-foot">
+          <a class="cta" href="#pricing"
+            ><span class="fill"></span
+            ><span class="roll" data-t="Get a quote"
+              ><span data-i18n="cta">Get a quote</span></span
+            ></a
+          >
+          <a
+            class="menu-wa"
+            id="menuWa"
+            href="https://wa.me/"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+              /></svg
+            ><span id="menuWaT"></span
+          ></a>
+          <!-- Language switch (DE / EN / TR). Hidden only while LANG_LOCK is set in js/app.js. -->
+          <div
+            class="lang"
+            role="group"
+            aria-label="Language"
+            data-i18n-al="lang_g"
+          >
+            <button
+              type="button"
+              data-set="de"
+              lang="de"
+              aria-label="Deutsch"
+              aria-pressed="false"
+            >
+              DE</button
+            ><i></i
+            ><button
+              type="button"
+              data-set="en"
+              lang="en"
+              aria-label="English"
+              aria-pressed="true"
+            >
+              EN</button
+            ><i></i
+            ><button
+              type="button"
+              data-set="tr"
+              lang="tr"
+              aria-label="Türkçe"
+              aria-pressed="false"
+            >
+              TR
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <a
+      class="wa"
+      id="wa"
+      href="https://wa.me/"
+      target="_blank"
+      rel="noopener noreferrer"
+      ><span class="wa-ic"
+        ><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path
+            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+          /></svg></span
+      ><span class="wa-t" id="waT"></span
+    ></a>
+
+    <div class="cmd" id="cmd" aria-hidden="true" inert>
+      <div
+        class="cmd-box"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Command menu"
+        data-i18n-al="al_cmd"
+      >
+        <input
+          id="cmdIn"
+          type="text"
+          autocomplete="off"
+          spellcheck="false"
+          role="combobox"
+          aria-expanded="true"
+          aria-controls="cmdList"
+        />
+        <ul class="cmd-list" id="cmdList" role="listbox"></ul>
+      </div>
+    </div>
+
+    <div
+      class="cs"
+      id="cs"
+      role="dialog"
+      aria-modal="true"
+      aria-hidden="true"
+      inert
+    >
+      <div class="cs-bar">
+        <button
+          class="cs-x"
+          id="csX"
+          type="button"
+          aria-label="Close"
+          data-i18n-al="al_close"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            width="22"
+            height="22"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.4"
+            stroke-linecap="round"
+          >
+            <path d="M6 6l12 12M18 6L6 18" />
+          </svg>
+        </button>
+        <div class="cs-nav">
+          <button
+            id="csPrev"
+            type="button"
+            aria-label="Previous"
+            data-i18n-al="al_prev"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M15 5l-7 7 7 7" />
+            </svg>
+          </button>
+          <span id="csIdx">01 / 05</span>
+          <button
+            id="csNext"
+            type="button"
+            aria-label="Next"
+            data-i18n-al="al_next"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="cs-scroll" id="csScroll">
+        <div class="cs-cover" id="csCover"></div>
+        <div class="cs-wrap" id="csBody"></div>
+      </div>
+    </div>
+
+    <main id="top">
+      <section class="hero" id="hero">
+        <div class="hero-bg" aria-hidden="true"></div>
+        <canvas class="trail" id="trail" aria-hidden="true"></canvas>
+        <div class="hero-grid wrap">
+          <div class="hero-copy">
+            <p class="eb">
+              <svg
+                viewBox="0 0 24 24"
+                width="18"
+                height="18"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <circle cx="12" cy="12" r="9" />
+                <ellipse class="mer" cx="12" cy="12" rx="4" ry="9" />
+                <path d="M3 12h18" />
+              </svg>
+              <span data-i18n="eb"
+                >Digital studio in Germany, working worldwide</span
+              >
+            </p>
+            <h1>
+              <span class="ln"
+                ><span class="ln-in" style="--i: 0" data-i18n="l1"
+                  >Digital</span
+                ></span
+              >
+              <span class="ln"
+                ><span class="ln-in" style="--i: 1" data-i18n="l2"
+                  >products</span
+                ></span
+              >
+              <span class="ln"
+                ><span class="ln-in ln-o" style="--i: 2" data-i18n="l3"
+                  >for modern</span
+                ></span
+              >
+              <span class="ln"
+                ><span class="ln-in" style="--i: 3"
+                  ><span class="rot" id="rot"></span></span
+              ></span>
+            </h1>
+            <p class="sub" data-i18n="sub">
+              Modern websites, online shops and custom web applications built
+              around your business.
+            </p>
+            <div class="btns">
+              <span class="pw">
+                <a class="cta btn btn-p" href="#pricing" data-magnet>
+                  <span class="fill"></span>
+                  <span class="roll" data-t="Start a project"
+                    ><span data-i18n="b1">Start a project</span></span
+                  >
+                  <span class="ico">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M7 17 17 7M8 7h9v9" />
+                    </svg>
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M7 17 17 7M8 7h9v9" />
+                    </svg>
+                  </span>
+                </a>
+              </span>
+              <a class="cta btn btn-g" href="#work" data-magnet>
+                <span class="fill"></span>
+                <span class="roll" data-t="View our work"
+                  ><span data-i18n="b2">View our work</span></span
+                >
+                <span class="ico">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M7 7l10 10M17 8v9H8" />
+                  </svg>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M7 7l10 10M17 8v9H8" />
+                  </svg>
+                </span>
+              </a>
+            </div>
+          </div>
+
+          <div
+            class="stage"
+            id="stage"
+            role="group"
+            aria-roledescription="carousel"
+            aria-label="Studio highlights"
+            data-i18n-al="al_hero"
+          >
+            <div class="float">
+              <div class="tilt" id="tilt">
+                <div class="deck" id="deck">
+                  <article class="card">
+                    <header class="card-top">
+                      <i></i><i></i><i></i><span>studio / 01</span>
+                    </header>
+                    <div class="viz" id="viz1">
+                      <div class="mock">
+                        <div class="m-nav">
+                          <b></b><s></s><s></s><s></s><u></u>
+                        </div>
+                        <div class="m-h"><em></em><em></em></div>
+                        <div class="m-p"></div>
+                        <div class="m-hero"></div>
+                        <div class="m-cards"><a></a><a></a><a></a></div>
+                        <div class="toast" data-i18n="m2">Live in 0.4 s</div>
+                        <div class="m-btn" data-i18n="m1">Go live</div>
+                        <svg class="m-cursor" viewBox="0 0 24 24">
+                          <path
+                            d="M5 3l14 7-6 2-2 6z"
+                            fill="#F3F4EE"
+                            stroke="#0D0E0C"
+                            stroke-width="1.5"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                    <h3 class="card-t">
+                      <span data-i18n="c1a">Built for</span
+                      ><em data-i18n="c1b">business.</em>
+                    </h3>
+                    <footer class="card-f"><b></b><span>01 / 04</span></footer>
+                  </article>
+
+                  <article class="card">
+                    <header class="card-top">
+                      <i></i><i></i><i></i><span>studio / 02</span>
+                    </header>
+                    <div class="viz chart">
+                      <svg viewBox="0 0 300 230" preserveAspectRatio="none">
+                        <defs>
+                          <linearGradient id="ga" x1="0" y1="0" x2="0" y2="1">
+                            <stop
+                              offset="0"
+                              stop-color="#B6FF3C"
+                              stop-opacity=".35"
+                            />
+                            <stop
+                              offset="1"
+                              stop-color="#B6FF3C"
+                              stop-opacity="0"
+                            />
+                          </linearGradient>
+                        </defs>
+                        <path
+                          class="gp"
+                          d="M0 60H300M0 120H300M0 180H300"
+                          fill="none"
+                          stroke-width="1"
+                        />
+                        <path
+                          class="area"
+                          d="M0 190C40 185 60 170 90 160S140 150 170 120S230 80 296 34V230H0Z"
+                        />
+                        <path
+                          class="ln-draw"
+                          d="M0 190C40 185 60 170 90 160S140 150 170 120S230 80 296 34"
+                        />
+                      </svg>
+                      <span class="end"></span>
+                      <span class="pop pop-a" data-i18n="o1">New order</span>
+                      <span class="pop pop-b" data-i18n="o2">Checkout</span>
+                    </div>
+                    <h3 class="card-t">
+                      <span data-i18n="c2a">Designed to</span
+                      ><em data-i18n="c2b">convert.</em>
+                    </h3>
+                    <footer class="card-f"><b></b><span>02 / 04</span></footer>
+                  </article>
+
+                  <article class="card">
+                    <header class="card-top">
+                      <i></i><i></i><i></i><span>studio / 03</span>
+                    </header>
+                    <div class="viz viz3">
+                      <div class="gauge">
+                        <svg viewBox="0 0 150 150">
+                          <circle class="g-bg" cx="75" cy="75" r="64" />
+                          <circle class="g-fg" cx="75" cy="75" r="64" />
+                        </svg>
+                        <span class="g-num" id="cnt">0</span>
+                      </div>
+                      <div class="rows">
+                        <div class="row">
+                          <span data-i18n="v1">Performance</span>
+                          <div><i style="--k: 0"></i></div>
+                        </div>
+                        <div class="row">
+                          <span data-i18n="v2">Accessibility</span>
+                          <div><i style="--k: 1"></i></div>
+                        </div>
+                        <div class="row">
+                          <span data-i18n="v3">SEO</span>
+                          <div><i style="--k: 2"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                    <h3 class="card-t">
+                      <span data-i18n="c3a">Fast by</span
+                      ><em data-i18n="c3b">default.</em>
+                    </h3>
+                    <footer class="card-f"><b></b><span>03 / 04</span></footer>
+                  </article>
+
+                  <article class="card">
+                    <header class="card-top">
+                      <i></i><i></i><i></i><span>studio / 04</span>
+                    </header>
+                    <div class="viz bars">
+                      <i style="--h: 22%; --k: 0"></i
+                      ><i style="--h: 34%; --k: 1"></i
+                      ><i style="--h: 30%; --k: 2"></i
+                      ><i style="--h: 52%; --k: 3"></i
+                      ><i style="--h: 64%; --k: 4"></i
+                      ><i style="--h: 80%; --k: 5"></i
+                      ><i style="--h: 100%; --k: 6"></i>
+                    </div>
+                    <h3 class="card-t">
+                      <span data-i18n="c4a">Ready to</span
+                      ><em data-i18n="c4b">scale.</em>
+                    </h3>
+                    <footer class="card-f"><b></b><span>04 / 04</span></footer>
+                  </article>
+                </div>
+                <div class="chip">
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="26"
+                    height="26"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linejoin="round"
+                    stroke-linecap="round"
+                  >
+                    <path
+                      d="M12 3c.6 4.6 2.4 6.4 7 7-4.6.6-6.4 2.4-7 7-.6-4.6-2.4-6.4-7-7 4.6-.6 6.4-2.4 7-7Z"
+                    />
+                    <path d="M19 3v4M17 5h4" />
+                  </svg>
+                  <span data-i18n="chip">Clear thinking. Careful craft.</span>
+                </div>
+              </div>
+            </div>
+            <div class="dots" id="dots">
+              <button aria-label="Slide 1" data-i18n-al="al_slide" data-n="1">
+                <i></i></button
+              ><button aria-label="Slide 2" data-i18n-al="al_slide" data-n="2">
+                <i></i></button
+              ><button aria-label="Slide 3" data-i18n-al="al_slide" data-n="3">
+                <i></i></button
+              ><button aria-label="Slide 4" data-i18n-al="al_slide" data-n="4">
+                <i></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="scrollcue" aria-hidden="true"><i></i></div>
+        <div class="ticker" aria-hidden="true">
+          <div class="ticker-track">
+            <span data-i18n="t1">Websites</span
+            ><span data-i18n="t2">Online shops</span
+            ><span data-i18n="t3">Web apps</span><span data-i18n="t4">APIs</span
+            ><span data-i18n="t5">Automation</span>
+            <span data-i18n="t1">Websites</span
+            ><span data-i18n="t2">Online shops</span
+            ><span data-i18n="t3">Web apps</span><span data-i18n="t4">APIs</span
+            ><span data-i18n="t5">Automation</span>
+          </div>
+        </div>
+      </section>
+      <section id="work" class="wk">
+        <div class="wrap">
+          <header class="svc-head">
+            <div>
+              <p class="svc-eb">
+                <i></i><span data-i18n="wk_eb">Selected work</span>
+              </p>
+              <h2 class="svc-h">
+                <span class="mk" style="--d: 0"
+                  ><span data-i18n="wk_h1">Proof that it</span></span
+                ><span class="mk" style="--d: 1"
+                  ><em data-i18n="wk_h2">works.</em></span
+                >
+              </h2>
+            </div>
+            <p class="svc-lead" data-i18n="wk_lead">
+              A selection of recent projects. Open any of them to see the
+              challenge, what we built and what changed for the client.
+            </p>
+          </header>
+          <div class="wk-bar">
+            <div
+              class="wk-f"
+              id="wkF"
+              role="group"
+              aria-label="Filter"
+              data-i18n-al="al_filter"
+            ></div>
+            <p class="wk-count">
+              <b id="wkN">05</b> <span data-i18n="wk_cnt">projects</span>
+            </p>
+          </div>
+          <div
+            class="wk-show"
+            id="wkShow"
+            role="region"
+            aria-roledescription="carousel"
+            aria-label="Projects"
+            data-i18n-al="al_projects"
+          >
+            <div class="wk-stage" id="wkStage" aria-live="off"></div>
+            <div class="wk-side">
+              <div class="wk-ctl">
+                <span class="wk-idx" id="wkIdx"></span>
+                <div class="wk-btns">
+                  <button
+                    type="button"
+                    id="wkPrev"
+                    aria-label="Previous project"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M19 12H5M11 6l-6 6 6 6" />
+                    </svg>
+                  </button>
+                  <button
+                    type="button"
+                    id="wkPP"
+                    class="pp"
+                    aria-pressed="false"
+                    aria-label="Pause"
+                  >
+                    <svg class="ps" viewBox="0 0 24 24" fill="currentColor">
+                      <rect x="6" y="5" width="4" height="14" rx="1.2" />
+                      <rect x="14" y="5" width="4" height="14" rx="1.2" /></svg
+                    ><svg class="pl" viewBox="0 0 24 24" fill="currentColor">
+                      <path
+                        d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"
+                      />
+                    </svg>
+                  </button>
+                  <button type="button" id="wkNext" aria-label="Next project">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <ol class="wk-rail" id="wkRail"></ol>
+            </div>
+          </div>
+          <div class="wk-allbar">
+            <button
+              type="button"
+              class="cta btn btn-g btn-s"
+              id="wkAllBtn"
+              aria-expanded="false"
+              aria-controls="wkAll"
+            >
+              <span class="fill"></span
+              ><span class="roll" id="wkAllR" data-t=""
+                ><span id="wkAllT"></span></span
+              ><span class="ico"
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M7 17 17 7M8 7h9v9" /></svg
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M7 17 17 7M8 7h9v9" /></svg
+              ></span>
+            </button>
+          </div>
+          <div class="wk-all" id="wkAll" inert>
+            <div class="wk-all-in">
+              <div class="wk-grid" id="wkGrid"></div>
+              <div class="wk-more" id="wkMore" hidden>
+                <button
+                  type="button"
+                  class="cta btn btn-g btn-s"
+                  id="wkMoreBtn"
+                >
+                  <span class="fill"></span
+                  ><span class="roll" data-t="Show more projects"
+                    ><span data-i18n="wk_more">Show more projects</span></span
+                  ><span class="ico"
+                    ><svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M7 17 17 7M8 7h9v9" /></svg
+                    ><svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M7 17 17 7M8 7h9v9" /></svg
+                  ></span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="wk-cur" id="wkCur" aria-hidden="true">
+        <span class="v" data-i18n="wk_view">View</span
+        ><span class="g" data-i18n="wk_go">Start</span>
+      </div>
+      <section id="services" class="svc-sec">
+        <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+          <symbol id="ar" viewBox="0 0 24 24">
+            <path
+              d="M7 17 17 7M8 7h9v9"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </symbol>
+        </svg>
+        <div class="wrap">
+          <header class="svc-head">
+            <div>
+              <p class="svc-eb">
+                <i></i><span data-i18n="wa">What we do</span>
+              </p>
+              <h2 class="svc-h">
+                <span class="mk" style="--d: 0"
+                  ><span data-i18n="wb">Digital work with a</span></span
+                ><span class="mk" style="--d: 1"
+                  ><em data-i18n="wc">business reason.</em></span
+                >
+              </h2>
+            </div>
+            <p class="svc-lead" data-i18n="wd">
+              We do not start with a template. We start with what needs to
+              become clearer, easier or more valuable for your customers.
+            </p>
+          </header>
+
+          <div class="svc-list">
+            <article class="svc">
+              <div class="svc-num">01</div>
+              <div class="svc-main">
+                <span class="svc-tag" data-i18n="tg1"></span>
+                <h3 class="svc-t">
+                  <span class="mk"><span data-i18n="sv1"></span></span>
+                </h3>
+                <p class="svc-from" data-from="landing"></p>
+                <p class="svc-d" data-i18n="sd1"></p>
+              </div>
+              <div class="svc-viz">
+                <div class="vwrap" data-viz="web">
+                  <div class="vwin">
+                    <div class="vbar">
+                      <i></i><i></i><i></i><span>yourclient.de</span>
+                    </div>
+                    <div class="vbody">
+                      <div class="w-nav pi" style="--n: 1">
+                        <b></b><s></s><s></s><s></s><u></u>
+                      </div>
+                      <div class="w-hero">
+                        <div class="w-txt pi" style="--n: 2">
+                          <em></em><em></em>
+                          <p></p>
+                          <p class="sh"></p>
+                          <a></a>
+                        </div>
+                        <div class="w-img pc" style="--n: 3"></div>
+                      </div>
+                      <div class="w-feat">
+                        <div class="pi" style="--n: 4">
+                          <b></b><s></s><s class="sh"></s>
+                        </div>
+                        <div class="pi" style="--n: 4; transition-delay: 0.1s">
+                          <b></b><s></s><s class="sh"></s>
+                        </div>
+                        <div class="pi" style="--n: 4; transition-delay: 0.2s">
+                          <b></b><s></s><s class="sh"></s>
+                        </div>
+                      </div>
+                      <div class="w-quote pi" style="--n: 5">
+                        <span>★★★★★</span><s></s><s class="sh"></s>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="chip2 c-a pi" style="--n: 6">
+                    <b>✓</b><span data-i18n="wv1">Loads in under 1 s</span>
+                  </div>
+                  <div
+                    class="chip2 c-b pi"
+                    style="--n: 6; transition-delay: 0.15s"
+                  >
+                    <b>✓</b><span data-i18n="wv2">SEO ready</span>
+                  </div>
+                  <div class="chip2 c-c pi" style="--n: 7">
+                    <b>✓</b><span data-i18n="wv3">Mobile-first</span>
+                  </div>
+                  <div class="phone pi" style="--n: 7">
+                    <i></i><s></s><s class="sh"></s><em></em>
+                  </div>
+                </div>
+              </div>
+              <div class="svc-more">
+                <ul class="svc-ul">
+                  <li style="--k: 0">
+                    <svg><use href="#ar" /></svg><span data-i18n="sb1"></span>
+                  </li>
+                  <li style="--k: 1">
+                    <svg><use href="#ar" /></svg><span data-i18n="sb2"></span>
+                  </li>
+                  <li style="--k: 2">
+                    <svg><use href="#ar" /></svg><span data-i18n="sb3"></span>
+                  </li>
+                  <li style="--k: 3">
+                    <svg><use href="#ar" /></svg><span data-i18n="sb4"></span>
+                  </li>
+                </ul>
+                <dl class="svc-facts">
+                  <div>
+                    <dt data-i18n="fl1"></dt>
+                    <dd data-i18n="tm1"></dd>
+                  </div>
+                  <div>
+                    <dt data-i18n="fl2"></dt>
+                    <dd data-i18n="fr1"></dd>
+                  </div>
+                </dl>
+                <a class="cta btn btn-g btn-s" href="#pricing" data-magnet>
+                  <span class="fill"></span
+                  ><span class="roll" data-t="Get a website quote"
+                    ><span data-i18n="q1">Get a website quote</span></span
+                  >
+                  <span class="ico"
+                    ><svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M7 17 17 7M8 7h9v9" /></svg
+                    ><svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M7 17 17 7M8 7h9v9" /></svg
+                  ></span>
+                </a>
+              </div>
+            </article>
+
+            <article class="svc">
+              <div class="svc-num">02</div>
+              <div class="svc-main">
+                <span class="svc-tag" data-i18n="tg2"></span>
+                <h3 class="svc-t">
+                  <span class="mk"><span data-i18n="sv2"></span></span>
+                </h3>
+                <p class="svc-from" data-from="shop"></p>
+                <p class="svc-d" data-i18n="sd2"></p>
+              </div>
+              <div class="svc-viz">
+                <div class="vwrap" data-viz="shop">
+                  <div class="vwin">
+                    <div class="vbar">
+                      <i></i><i></i><i></i><span>yourshop.de</span>
+                    </div>
+                    <div class="vbody">
+                      <div class="sh-top pi" style="--n: 1">
+                        <b></b><s></s
+                        ><u><em class="badge pi" style="--n: 3">1</em></u>
+                      </div>
+                      <div class="sh-grid">
+                        <div class="prod pi" style="--n: 1">
+                          <i
+                            style="
+                              --g: linear-gradient(135deg, #b6ff3c, #37d98a);
+                            "
+                          ></i
+                          ><s></s>
+                          <div><s></s><u></u></div>
+                        </div>
+                        <div
+                          class="prod pi"
+                          style="--n: 1; transition-delay: 0.12s"
+                        >
+                          <i
+                            style="
+                              --g: linear-gradient(135deg, #f3f4ee, #9aa88a);
+                            "
+                          ></i
+                          ><s></s>
+                          <div><s></s><u></u></div>
+                        </div>
+                        <div
+                          class="prod pi"
+                          style="--n: 1; transition-delay: 0.24s"
+                        >
+                          <i
+                            style="
+                              --g: linear-gradient(135deg, #3a4a22, #b6ff3c);
+                            "
+                          ></i
+                          ><s></s>
+                          <div><s></s><u></u></div>
+                        </div>
+                        <div
+                          class="prod pi"
+                          style="--n: 1; transition-delay: 0.36s"
+                        >
+                          <i
+                            style="
+                              --g: linear-gradient(135deg, #37d98a, #1e3a14);
+                            "
+                          ></i
+                          ><s></s>
+                          <div><s></s><u></u></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="drawer">
+                      <b class="dr-t" data-i18n="sh1">Cart</b>
+                      <div class="dr-item"><i></i><s></s><u></u></div>
+                      <div class="dr-tot">
+                        <span data-i18n="sh4">Total</span><s></s>
+                      </div>
+                      <div class="pay" data-i18n="sh2">Pay now</div>
+                      <div class="pays">
+                        <span>Card</span><span>PayPal</span><span>SEPA</span>
+                      </div>
+                    </div>
+                    <span class="fly"></span>
+                    <div class="okv">
+                      <svg
+                        viewBox="0 0 64 64"
+                        width="72"
+                        height="72"
+                        fill="none"
+                        stroke="#B6FF3C"
+                        stroke-width="4"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <circle cx="32" cy="32" r="28" />
+                        <path d="M20 33l8 8 16-17" />
+                      </svg>
+                      <b data-i18n="sh3">Order confirmed</b>
+                    </div>
+                    <svg class="cur" viewBox="0 0 24 24">
+                      <path
+                        d="M5 3l14 7-6 2-2 6z"
+                        fill="#F3F4EE"
+                        stroke="#0D0E0C"
+                        stroke-width="1.5"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div class="svc-more">
+                <ul class="svc-ul">
+                  <li style="--k: 0">
+                    <svg><use href="#ar" /></svg><span data-i18n="sb5"></span>
+                  </li>
+                  <li style="--k: 1">
+                    <svg><use href="#ar" /></svg><span data-i18n="sb6"></span>
+                  </li>
+                  <li style="--k: 2">
+                    <svg><use href="#ar" /></svg><span data-i18n="sb7"></span>
+                  </li>
+                  <li style="--k: 3">
+                    <svg><use href="#ar" /></svg><span data-i18n="sb8"></span>
+                  </li>
+                </ul>
+                <dl class="svc-facts">
+                  <div>
+                    <dt data-i18n="fl1"></dt>
+                    <dd data-i18n="tm2"></dd>
+                  </div>
+                  <div>
+                    <dt data-i18n="fl2"></dt>
+                    <dd data-i18n="fr2"></dd>
+                  </div>
+                </dl>
+                <a class="cta btn btn-g btn-s" href="#pricing" data-magnet>
+                  <span class="fill"></span
+                  ><span class="roll" data-t="Get a shop quote"
+                    ><span data-i18n="q2">Get a shop quote</span></span
+                  >
+                  <span class="ico"
+                    ><svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M7 17 17 7M8 7h9v9" /></svg
+                    ><svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M7 17 17 7M8 7h9v9" /></svg
+                  ></span>
+                </a>
+              </div>
+            </article>
+
+            <article class="svc">
+              <div class="svc-num">03</div>
+              <div class="svc-main">
+                <span class="svc-tag" data-i18n="tg3"></span>
+                <h3 class="svc-t">
+                  <span class="mk"><span data-i18n="sv3"></span></span>
+                </h3>
+                <p class="svc-from" data-from="app"></p>
+                <p class="svc-d" data-i18n="sd3"></p>
+              </div>
+              <div class="svc-viz">
+                <div class="vwrap" data-viz="app">
+                  <div class="vwin">
+                    <div class="vbar">
+                      <i></i><i></i><i></i><span>app.yourclient.de</span>
+                    </div>
+                    <div class="vbody a-body">
+                      <aside class="a-side pi" style="--n: 1">
+                        <b></b><i></i><i></i><i></i><i></i>
+                      </aside>
+                      <div>
+                        <div class="a-top pi" style="--n: 1">
+                          <s></s><u></u>
+                        </div>
+                        <div class="a-kpis">
+                          <div class="kpi pi" style="--n: 2">
+                            <span data-i18n="av1">Users</span
+                            ><svg viewBox="0 0 80 26">
+                              <polyline
+                                class="spark"
+                                points="0,22 14,16 28,19 42,9 56,12 80,2"
+                              />
+                            </svg>
+                          </div>
+                          <div
+                            class="kpi pi"
+                            style="--n: 2; transition-delay: 0.1s"
+                          >
+                            <span data-i18n="av2">Orders</span
+                            ><svg viewBox="0 0 80 26">
+                              <polyline
+                                class="spark"
+                                points="0,18 14,20 28,10 42,14 56,6 80,8"
+                              />
+                            </svg>
+                          </div>
+                          <div
+                            class="kpi pi"
+                            style="--n: 2; transition-delay: 0.2s"
+                          >
+                            <span data-i18n="av3">Uptime</span
+                            ><svg viewBox="0 0 80 26">
+                              <polyline
+                                class="spark"
+                                points="0,10 20,8 40,10 60,7 80,6"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <div class="a-chart pi" style="--n: 3">
+                          <i style="--h: 35%; --k: 0"></i
+                          ><i style="--h: 52%; --k: 1"></i
+                          ><i style="--h: 44%; --k: 2"></i
+                          ><i style="--h: 68%; --k: 3"></i
+                          ><i style="--h: 58%; --k: 4"></i
+                          ><i style="--h: 82%; --k: 5"></i
+                          ><i style="--h: 72%; --k: 6"></i
+                          ><i style="--h: 96%; --k: 7"></i>
+                        </div>
+                        <div class="a-rows">
+                          <div class="rw pi" style="--n: 4">
+                            <b></b><s></s>
+                            <div class="pill-x">
+                              <span
+                                class="pb"
+                                style="opacity: 1; transform: none"
+                                data-i18n="av5"
+                                >Active</span
+                              >
+                            </div>
+                          </div>
+                          <div
+                            class="rw rw-x pi"
+                            style="--n: 4; transition-delay: 0.12s"
+                          >
+                            <b></b><s></s><i class="tg"></i>
+                            <div class="pill-x">
+                              <span class="pa" data-i18n="av4">Pending</span
+                              ><span class="pb" data-i18n="av5">Active</span>
+                            </div>
+                          </div>
+                          <div
+                            class="rw pi"
+                            style="--n: 4; transition-delay: 0.24s"
+                          >
+                            <b></b><s></s>
+                            <div class="pill-x">
+                              <span
+                                class="pb"
+                                style="opacity: 1; transform: none"
+                                data-i18n="av5"
+                                >Active</span
+                              >
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="toastv pi" style="--n: 6">
+                      <b>✓</b
+                      ><span data-i18n="av6">Synced with your tools</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="svc-more">
+                <ul class="svc-ul">
+                  <li style="--k: 0">
+                    <svg><use href="#ar" /></svg><span data-i18n="sb9"></span>
+                  </li>
+                  <li style="--k: 1">
+                    <svg><use href="#ar" /></svg><span data-i18n="sb10"></span>
+                  </li>
+                  <li style="--k: 2">
+                    <svg><use href="#ar" /></svg><span data-i18n="sb11"></span>
+                  </li>
+                  <li style="--k: 3">
+                    <svg><use href="#ar" /></svg><span data-i18n="sb12"></span>
+                  </li>
+                </ul>
+                <dl class="svc-facts">
+                  <div>
+                    <dt data-i18n="fl1"></dt>
+                    <dd data-i18n="tm3"></dd>
+                  </div>
+                  <div>
+                    <dt data-i18n="fl2"></dt>
+                    <dd data-i18n="fr3"></dd>
+                  </div>
+                </dl>
+                <a class="cta btn btn-g btn-s" href="#pricing" data-magnet>
+                  <span class="fill"></span
+                  ><span class="roll" data-t="Get an app quote"
+                    ><span data-i18n="q3">Get an app quote</span></span
+                  >
+                  <span class="ico"
+                    ><svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M7 17 17 7M8 7h9v9" /></svg
+                    ><svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M7 17 17 7M8 7h9v9" /></svg
+                  ></span>
+                </a>
+              </div>
+            </article>
+          </div>
+
+          <div class="promise">
+            <div class="pr" style="--k: 0">
+              <span class="pr-i"
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M4 12l8-8h8v8l-8 8z" />
+                  <circle cx="15.5" cy="8.5" r="1.2" /></svg></span
+              ><b data-i18n="pt1"></b>
+              <p data-i18n="pd1"></p>
+            </div>
+            <div class="pr" style="--k: 1">
+              <span class="pr-i"
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="8" cy="12" r="4" />
+                  <path d="M12 12h9M18 12v3M15 12v2" /></svg></span
+              ><b data-i18n="pt2"></b>
+              <p data-i18n="pd2"></p>
+            </div>
+            <div class="pr" style="--k: 2">
+              <span class="pr-i"
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M4 5h16v11H9l-5 4z" /></svg></span
+              ><b data-i18n="pt3"></b>
+              <p data-i18n="pd3"></p>
+            </div>
+            <div class="pr" style="--k: 3">
+              <span class="pr-i"
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="9" />
+                  <circle cx="12" cy="12" r="3.5" />
+                  <path
+                    d="M5.6 5.6l3.9 3.9M14.5 14.5l3.9 3.9M18.4 5.6l-3.9 3.9M9.5 14.5l-3.9 3.9"
+                  /></svg></span
+              ><b data-i18n="pt4"></b>
+              <p data-i18n="pd4"></p>
+            </div>
+          </div>
+
+          <div class="flow">
+            <h3 class="flow-h">
+              <span class="mk"
+                ><span data-i18n="fh">How a project runs</span></span
+              >
+            </h3>
+            <ol class="fsteps">
+              <li class="fstep">
+                <span class="fdot"></span>
+                <h4 data-i18n="ft1"></h4>
+                <p data-i18n="fd1"></p>
+              </li>
+              <li class="fstep">
+                <span class="fdot"></span>
+                <h4 data-i18n="ft2"></h4>
+                <p data-i18n="fd2"></p>
+              </li>
+              <li class="fstep">
+                <span class="fdot"></span>
+                <h4 data-i18n="ft3"></h4>
+                <p data-i18n="fd3"></p>
+              </li>
+              <li class="fstep">
+                <span class="fdot"></span>
+                <h4 data-i18n="ft4"></h4>
+                <p data-i18n="fd4"></p>
+              </li>
+            </ol>
+          </div>
+
+          <div class="svc-end">
+            <div>
+              <h3>
+                <span class="mk"
+                  ><span data-i18n="et">Not sure what you need yet?</span></span
+                >
+              </h3>
+              <p data-i18n="ed">
+                Tell us what you want to improve. If a simpler option is enough,
+                we will say so.
+              </p>
+            </div>
+            <a class="cta btn btn-d" href="#pricing" data-magnet>
+              <span class="fill"></span
+              ><span class="roll" data-t="Start a project"
+                ><span data-i18n="b1">Start a project</span></span
+              >
+              <span class="ico"
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M7 17 17 7M8 7h9v9" /></svg
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M7 17 17 7M8 7h9v9" /></svg
+              ></span>
+            </a>
+          </div>
+        </div>
+      </section>
+      <section id="why" class="wy">
+        <div class="wrap">
+          <header class="svc-head">
+            <div>
+              <p class="svc-eb">
+                <i></i><span data-i18n="wy_eb">Why work with us</span>
+              </p>
+              <h2 class="svc-h">
+                <span class="mk" style="--d: 0"
+                  ><span data-i18n="wy_h1">Good work is built on</span></span
+                ><span class="mk" style="--d: 1"
+                  ><em data-i18n="wy_h2">good relationships.</em></span
+                >
+              </h2>
+            </div>
+            <p class="wy-lead" id="wyLead"></p>
+          </header>
+
+          <div class="wy-grid" id="wyGrid">
+            <article class="wy-c" style="--k: 0">
+              <div class="wy-v" data-viz="wy1" aria-hidden="true">
+                <div class="doc">
+                  <div class="doc-h pi" style="--n: 1">
+                    <b></b><span data-i18n="wy_o0">Your offer</span><em>PDF</em>
+                  </div>
+                  <div class="doc-r pi" style="--n: 1">
+                    <span data-i18n="wy_o1">Scope</span
+                    ><b data-i18n="wy_o1v">5 pages</b>
+                  </div>
+                  <div class="doc-r pi" style="--n: 2">
+                    <span data-i18n="wy_o2">Timeline</span
+                    ><b data-i18n="wy_o2v">2 weeks</b>
+                  </div>
+                  <div class="doc-r pi" style="--n: 3">
+                    <span data-i18n="wy_o3">Revisions</span
+                    ><b data-i18n="wy_o3v">2 rounds</b>
+                  </div>
+                  <div class="doc-r doc-t pi" style="--n: 4">
+                    <span data-i18n="wy_o4">Price</span
+                    ><b data-i18n="wy_o4v">Fixed</b>
+                  </div>
+                  <div class="stamp pi" style="--n: 5">
+                    <b>✓</b><span data-i18n="wy_o5">In writing</span>
+                  </div>
+                </div>
+              </div>
+              <div class="wy-t">
+                <span class="wy-n">01</span>
+                <h3 data-i18n="wy1t">Transparent</h3>
+                <p data-i18n="wy1d">Clear scope and straightforward pricing.</p>
+              </div>
+            </article>
+            <article class="wy-c" style="--k: 1">
+              <div class="wy-v" data-viz="wy2" aria-hidden="true">
+                <div class="chat">
+                  <div class="msg me pi" style="--n: 1">
+                    <span data-i18n="wy_c1"
+                      >Can we make the hero image bigger?</span
+                    >
+                  </div>
+                  <div class="slot">
+                    <div class="typing pi" style="--n: 2">
+                      <i></i><i></i><i></i>
+                    </div>
+                    <div class="msg you pi" style="--n: 3">
+                      <b>YN</b
+                      ><span data-i18n="wy_c2">Done. Preview is live.</span>
+                    </div>
+                  </div>
+                  <div class="cmeta pi" style="--n: 4">
+                    <i></i
+                    ><span data-i18n="wy_c3"
+                      >Answers within one working day</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="wy-t">
+                <span class="wy-n">02</span>
+                <h3 data-i18n="wy2t">Personal</h3>
+                <p data-i18n="wy2d">
+                  Direct communication without unnecessary layers.
+                </p>
+              </div>
+            </article>
+            <article class="wy-c" style="--k: 2">
+              <div class="wy-v" data-viz="wy3" aria-hidden="true">
+                <div class="term">
+                  <div class="tl pi" style="--n: 1">
+                    <span class="tp">$</span> git push origin main
+                  </div>
+                  <div class="tl ok pi" style="--n: 2">
+                    <b>✓</b> Tests passed
+                  </div>
+                  <div class="tl ok pi" style="--n: 3">
+                    <b>✓</b> Built in 12 s
+                  </div>
+                  <div class="tl ok pi" style="--n: 4">
+                    <b>✓</b> Live on yourclient.de
+                  </div>
+                  <div class="tl pi" style="--n: 5">
+                    <span class="tp">$</span><i class="caret"></i>
+                  </div>
+                  <div class="tchips pi" style="--n: 5">
+                    <span>TypeScript</span><span>React</span><span>Node.js</span
+                    ><span>PostgreSQL</span>
+                  </div>
+                </div>
+              </div>
+              <div class="wy-t">
+                <span class="wy-n">03</span>
+                <h3 data-i18n="wy3t">Modern</h3>
+                <p data-i18n="wy3d">
+                  Current technology and contemporary design practice.
+                </p>
+              </div>
+            </article>
+            <article class="wy-c" style="--k: 3">
+              <div class="wy-v" data-viz="wy4" aria-hidden="true">
+                <div class="bz">
+                  <div class="bz-chips">
+                    <div class="bz-c pi" style="--n: 1">
+                      <span data-i18n="wy_b1">Blockchain</span>
+                    </div>
+                    <div class="bz-c pi" style="--n: 2">
+                      <span data-i18n="wy_b2">AI everywhere</span>
+                    </div>
+                    <div class="bz-c pi" style="--n: 3">
+                      <span data-i18n="wy_b3">Microservices</span>
+                    </div>
+                  </div>
+                  <div class="bz-ok pi" style="--n: 5">
+                    <b>✓</b
+                    ><span data-i18n="wy_b4">A simple site that sells</span>
+                  </div>
+                </div>
+              </div>
+              <div class="wy-t">
+                <span class="wy-n">04</span>
+                <h3 data-i18n="wy4t">Practical</h3>
+                <p data-i18n="wy4d">
+                  The right solution for the business problem — not the
+                  buzzword.
+                </p>
+              </div>
+            </article>
+          </div>
+
+          <div class="wy-end" id="wyEnd">
+            <div>
+              <p class="wy-e1" data-i18n="wy_e1">
+                Sounds like the way you want to work?
+              </p>
+              <p class="wy-e2" data-i18n="wy_e2">
+                Tell us about your project. You get a straight answer, not a
+                sales pitch.
+              </p>
+            </div>
+            <a class="cta btn btn-p btn-s" href="#pricing" data-magnet>
+              <span class="fill"></span
+              ><span class="roll" data-t="Start a project"
+                ><span data-i18n="b1">Start a project</span></span
+              >
+              <span class="ico"
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M7 17 17 7M8 7h9v9" /></svg
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M7 17 17 7M8 7h9v9" /></svg
+              ></span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="pricing" class="pk-sec">
+        <div class="wrap">
+          <header class="svc-head">
+            <div>
+              <p class="svc-eb">
+                <i></i><span data-i18n="pk_eb">Pricing</span>
+              </p>
+              <h2 class="svc-h">
+                <span class="mk" style="--d: 0"
+                  ><span data-i18n="pk_h1">Starting prices,</span></span
+                ><span class="mk" style="--d: 1"
+                  ><em data-i18n="pk_h2">fitted to your project.</em></span
+                >
+              </h2>
+            </div>
+            <p class="svc-lead" data-i18n="pk_lead">
+              Every package starts at a fair price, not a fixed box. If you need
+              something simpler, we scale the scope down and the price with it.
+            </p>
+          </header>
+
+          <div class="pk-pick pk-rise">
+            <p class="pk-ask" data-i18n="pk_ask">What do you want to do?</p>
+            <div class="pk-goals" id="pkGoals" role="group"></div>
+          </div>
+          <div class="pk-rec" id="pkRec" inert>
+            <div>
+              <div class="pk-rec-in">
+                <div class="pk-rec-t">
+                  <span class="pk-rec-l" data-i18n="pk_best"
+                    >Best fit for you</span
+                  ><b class="pk-rec-n" id="pkRecN"></b
+                  ><span class="pk-rec-p" id="pkRecP"></span>
+                </div>
+                <a class="cta btn btn-p btn-s" id="pkRecA" href="#pricing"
+                  ><span class="fill"></span
+                  ><span class="roll" id="pkRecR" data-t=""><span></span></span
+                  ><span class="ico"
+                    ><svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M7 17 17 7M8 7h9v9" /></svg
+                    ><svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M7 17 17 7M8 7h9v9" /></svg></span
+                ></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="pk-grid" id="pkGrid"></div>
+          <div class="pk-dots" id="pkDots"></div>
+          <p class="pk-cap pk-rise" data-i18n="pk_cap">
+            Starting prices in euros. You always get a written quote before we
+            start.
+          </p>
+          <p class="pk-cap pk-fxn" data-fx hidden></p>
+
+          <div class="pk-cu pk-rise" id="pkCu">
+            <div class="pk-cu-l">
+              <span class="pk-cu-tag" data-i18n="pk_cu_t">Custom projects</span>
+              <h3 data-i18n="pk_cu_h">Something else in mind?</h3>
+              <p data-i18n="pk_cu_d">
+                Bigger scope, special integrations or an idea that does not fit
+                a box. Tell us the problem and we shape the solution and the
+                price around it.
+              </p>
+              <span class="avail" data-i18n="wy_c3"
+                >Answers within one working day</span
+              >
+            </div>
+            <a class="cta btn btn-d pk-big" id="pkTalk" href="#pricing"
+              ><span class="fill"></span
+              ><span class="roll" data-t="Let's talk"
+                ><span data-i18n="pk_talk">Let's talk</span></span
+              ><span class="ico"
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M7 17 17 7M8 7h9v9" /></svg
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M7 17 17 7M8 7h9v9" /></svg></span
+            ></a>
+            <div class="pk-mq" aria-hidden="true">
+              <span data-i18n="pk_m1"></span><span data-i18n="pk_m2"></span
+              ><span data-i18n="pk_m3"></span><span data-i18n="pk_m4"></span
+              ><span data-i18n="pk_m5"></span><span data-i18n="pk_m1"></span
+              ><span data-i18n="pk_m2"></span><span data-i18n="pk_m3"></span
+              ><span data-i18n="pk_m4"></span><span data-i18n="pk_m5"></span>
+            </div>
+          </div>
+
+          <div class="es-band pk-rise" id="estimate">
+            <div class="es-band-l">
+              <span class="svc-eb" data-i18n="es_eb">A better first step</span>
+              <h3>
+                <span data-i18n="es_h1">Not sure what your</span
+                ><em data-i18n="es_h2">project will cost?</em>
+              </h3>
+              <p data-i18n="es_d">
+                Answer a few simple questions and watch your estimate build
+                live. No technical knowledge needed.
+              </p>
+              <a class="cta btn btn-p es-go" href="#estimate" data-es-open
+                ><span class="fill"></span
+                ><span class="roll" data-t="Get your estimate"
+                  ><span data-i18n="es_b">Get your estimate</span></span
+                ><span class="ico"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M7 17 17 7M8 7h9v9" /></svg
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M7 17 17 7M8 7h9v9" /></svg></span
+              ></a>
+              <div class="es-perks">
+                <span data-i18n="es_p1">About 1 minute</span
+                ><span data-i18n="es_p2">No sign-up</span
+                ><span data-i18n="es_p3">No obligation</span>
+              </div>
+            </div>
+            <div class="es-mini" id="esMini" aria-hidden="true">
+              <div class="em-h">
+                <i></i><i></i><i></i><span id="emH"></span>
+              </div>
+              <ul class="em-l" id="emL"></ul>
+              <div class="em-t">
+                <span id="emS"></span><b id="emT"></b
+                ><small class="em-x" id="emX"></small>
+              </div>
+            </div>
+          </div>
+
+          <div class="pk-inc pk-rise">
+            <h3 data-i18n="pk_inc">Every package includes</h3>
+            <ul>
+              <li>
+                <span class="pk-ck"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span
+                ><span data-i18n="pk_i1">A written quote before we start</span>
+              </li>
+              <li>
+                <span class="pk-ck"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span
+                ><span data-i18n="pk_i2">Responsive on every device</span>
+              </li>
+              <li>
+                <span class="pk-ck"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span
+                ><span data-i18n="pk_i3">Basic SEO setup</span>
+              </li>
+              <li>
+                <span class="pk-ck"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span
+                ><span data-i18n="pk_i4">Hosting and domain set up</span>
+              </li>
+              <li>
+                <span class="pk-ck"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span
+                ><span data-i18n="pk_i5">30 days of support after launch</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="pk-faq">
+            <div class="pk-faq-h pk-rise">
+              <h3 data-i18n="pk_fq_h">Questions before you decide?</h3>
+              <p>
+                <span data-i18n="pk_fq_d"
+                  >Not listed here? Ask us directly.</span
+                >
+                <a id="pkMail" href="#pricing" data-i18n="pk_fq_a"
+                  >Send an email</a
+                >
+              </p>
+            </div>
+            <div class="pk-acc pk-rise" id="pkAcc"></div>
+          </div>
+        </div>
+      </section>
+      <footer id="contact" class="ft" aria-labelledby="ftH">
+        <div class="ft-cta">
+          <div class="ft-orb" aria-hidden="true"></div>
+          <div class="wrap">
+            <div class="ft-hw ft-rise">
+              <span class="ft-eb" data-i18n="ft_eb">Let's work together</span>
+              <h2 class="ft-h" id="ftH" style="margin-top: 22px">
+                <span data-i18n="ft_h1">Have an idea?</span
+                ><span><em data-i18n="ft_h2">Let's build it.</em></span>
+              </h2>
+            </div>
+            <p class="ft-note ft-rise" style="--k: 1" data-i18n="ft_d">
+              Tell us what you need. You get a straight answer and a written
+              quote within one working day.
+            </p>
+            <div class="ft-act ft-rise" style="--k: 2">
+              <a class="cta btn btn-d ft-big" id="ftStart" href="#pricing"
+                ><span class="fill"></span
+                ><span class="roll" data-t="Start a project"
+                  ><span data-i18n="ft_b">Start a project</span></span
+                ><span class="ico"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M7 17 17 7M8 7h9v9" /></svg
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M7 17 17 7M8 7h9v9" /></svg></span
+              ></a>
+              <a
+                class="ft-wa"
+                id="ftWa"
+                href="https://wa.me/"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><i
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+                    /></svg></i
+                ><span id="ftWaT"></span
+              ></a>
+              <button class="ft-mail" type="button" id="ftCopy">
+                <span id="ftMailT"></span
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="9" y="9" width="11" height="11" rx="2.5" />
+                  <path d="M5 15V6a2 2 0 0 1 2-2h9" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="wrap">
+          <div class="ft-main">
+            <div class="ft-brand ft-rise">
+              <a
+                href="#top"
+                class="logo"
+                aria-label="Home"
+                data-i18n-al="al_home"
+                ><span class="logo-mark">YN</span><span>yourname</span></a
+              >
+              <p data-i18n="ft_about">
+                A digital studio in Germany, working worldwide. We build modern
+                websites, online shops and custom web applications around your
+                business.
+              </p>
+            </div>
+            <nav
+              class="ft-cols ft-rise"
+              style="--k: 1"
+              id="ftCols"
+              aria-label="Footer"
+              data-i18n-al="al_footer"
+            ></nav>
+          </div>
+          <div class="ft-mark ft-rise" aria-hidden="true">
+            <span id="ftMark">yourname</span>
+          </div>
+          <div class="ft-bar">
+            <div class="ft-legal" id="ftLegal"></div>
+            <div class="ft-end">
+              <div
+                class="lang ft-lang"
+                role="group"
+                aria-label="Language"
+                data-i18n-al="lang_g"
+              >
+                <button
+                  type="button"
+                  data-set="de"
+                  lang="de"
+                  aria-label="Deutsch"
+                  aria-pressed="false"
+                >
+                  DE</button
+                ><i></i
+                ><button
+                  type="button"
+                  data-set="en"
+                  lang="en"
+                  aria-label="English"
+                  aria-pressed="true"
+                >
+                  EN</button
+                ><i></i
+                ><button
+                  type="button"
+                  data-set="tr"
+                  lang="tr"
+                  aria-label="Türkçe"
+                  aria-pressed="false"
+                >
+                  TR
+                </button>
+              </div>
+              <span class="ft-made" id="ftMade"></span>
+              <button class="ft-top" type="button" id="ftUp">
+                <span data-i18n="ft_top">Back to top</span
+                ><i
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M12 19V5M6 11l6-6 6 6" /></svg
+                ></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </main>
+    <div
+      class="es"
+      id="es"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="esT"
+      inert
+    >
+      <div class="es-bd" data-es-close></div>
+      <div class="es-box">
+        <div class="es-top">
+          <span class="es-eb" data-es-t="eb"></span>
+          <span class="es-cnt" id="esCnt"></span>
+          <button class="es-x" type="button" data-es-close data-es-al="close">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+            >
+              <path d="M6 6l12 12M18 6L6 18" />
+            </svg>
+          </button>
+        </div>
+        <div class="es-prog" id="esProg"></div>
+        <div class="es-main">
+          <div class="es-l">
+            <div class="es-body" id="esBody"></div>
+            <div class="es-dock" id="esDock">
+              <button class="es-dk" type="button" aria-expanded="false">
+                <span data-es-t="est"></span><b data-es="range"></b
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M6 15l6-6 6 6" />
+                </svg>
+              </button>
+              <div class="es-dp">
+                <div>
+                  <div class="es-time">
+                    <span data-es-t="timeline"></span><b data-es="time"></b>
+                  </div>
+                  <p class="es-fx" data-es="fx" hidden></p>
+                  <ul class="es-lines" data-es="lines"></ul>
+                </div>
+              </div>
+            </div>
+            <div class="es-foot">
+              <button class="es-back" id="esBack" type="button"></button>
+              <button class="es-next" id="esNext" type="button">
+                <span></span
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </button>
+              <span class="es-hint" data-es-t="key"></span>
+            </div>
+          </div>
+          <aside class="es-side" id="esSide" aria-live="polite">
+            <div class="es-lbl">
+              <span data-es-t="est_l"></span
+              ><span class="es-acc"
+                ><span data-es-t="acc"></span><i data-es="acc"></i
+              ></span>
+            </div>
+            <div class="es-big empty" data-es="big">
+              <b data-es="lo"></b><b data-es="hi"></b>
+            </div>
+            <p class="es-fx" data-es="fx" hidden></p>
+            <p class="es-note" data-es="note"></p>
+            <div class="es-time">
+              <span data-es-t="timeline"></span><b data-es="time"></b>
+            </div>
+            <ul class="es-lines" data-es="lines"></ul>
+            <div class="es-trust">
+              <span data-es-t="t1"></span><span data-es-t="t2"></span
+              ><span data-es-t="t3"></span>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
