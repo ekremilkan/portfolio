@@ -3465,24 +3465,13 @@ html.pre-on {
 }
 .wk-cover {
   position: relative;
-  flex: 1;
+  flex: 1 1 230px;
   min-height: 230px;
   border-radius: 20px;
   overflow: hidden;
   isolation: isolate;
   container-type: size;
   background: linear-gradient(135deg, var(--c1), var(--c2));
-}
-.wk-cover img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.9s var(--ease);
-}
-.wk-c:hover .wk-cover img {
-  transform: scale(1.05);
 }
 .wk-cat,
 .wk-yr,
@@ -3532,6 +3521,49 @@ html.pre-on {
   height: 14px;
   color: var(--lime);
 }
+.wk-res[hidden] {
+  display: none;
+}
+/* status badge next to the year: "Live" filled, "Concept" outlined */
+.wk-tr {
+  position: absolute;
+  z-index: 3;
+  right: 14px;
+  top: 14px;
+  display: flex;
+  gap: 6px;
+}
+.wk-tr .wk-yr {
+  position: static;
+}
+.wk-st {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  border: 1px solid rgba(243, 244, 238, 0.6);
+  background: rgba(13, 14, 12, 0.6);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--bone);
+}
+.wk-st.live {
+  border-color: var(--lime);
+  background: var(--lime);
+  color: var(--ink);
+  font-weight: 700;
+}
+.wk-st.live::before,
+.cs-stt.live::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
 .wk-info {
   padding: 18px 12px 12px;
 }
@@ -3550,6 +3582,13 @@ html.pre-on {
   letter-spacing: -0.04em;
   line-height: 1;
   font-size: 1.55rem;
+}
+.tw {
+  display: inline-block;
+  max-width: 100%;
+}
+.wk-t > span {
+  min-width: 0;
 }
 .wk-arr {
   flex: none;
@@ -3782,6 +3821,66 @@ body.cs-on .wk-cur {
 .wk-c:hover .aw:nth-child(2) {
   transform: translate(calc(var(--px, 0) * -26px), calc(var(--py, 0) * -18px));
 }
+/* real screenshots: a browser window and a phone on the brand colours.
+   The frame never zooms past the point where a window would be cut in half. */
+.af.shot {
+  width: min(max(100cqw, 160cqh), 112cqw, 200cqh);
+}
+/* on a phone the mockup is small: a shorter hero, no empty colour around it */
+@media (max-width: 759px) {
+  .cs-cover:has(.shot) {
+    height: min(48vh, 420px);
+  }
+}
+/* case-study hero: a little smaller and higher, clear of the title below */
+.cs-cover .af.shot {
+  width: min(max(100cqw, 160cqh), 112cqw, 176cqh);
+  translate: -50% -53%;
+}
+.sw {
+  border-radius: 2% / 3%;
+}
+.sw img {
+  position: absolute;
+  display: block;
+  object-fit: cover;
+  object-position: top;
+}
+.sw-d {
+  left: 7%;
+  top: 13%;
+  width: 68%;
+  aspect-ratio: 1.472;
+  background: #f7f5ef;
+  rotate: -1.5deg;
+}
+.sw-d.dk {
+  background: #101319;
+}
+.sw-d img {
+  left: 0;
+  top: 8%;
+  width: 100%;
+  height: 92%;
+}
+.sw-m {
+  left: 74.5%;
+  top: 25%;
+  width: 17.5%;
+  aspect-ratio: 0.525;
+  border-radius: 13% / 6.8%;
+  background: #101319;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.14),
+    0 30px 60px -20px rgba(0, 0, 0, 0.55);
+  rotate: 2.5deg;
+}
+.sw-m img {
+  inset: 2.25% 4.5%;
+  width: 91%;
+  height: 95.5%;
+  border-radius: 9.5% / 4.8%;
+}
 .mp {
   position: absolute;
   left: 0;
@@ -3908,13 +4007,6 @@ body.cs-on .wk-cur {
   container-type: size;
   background: linear-gradient(135deg, var(--c1), var(--c2));
 }
-.cs-cover img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 .cs-cover::after {
   content: "";
   position: absolute;
@@ -3953,6 +4045,34 @@ body.cs-on .wk-cur {
   font-size: 0.8rem;
   font-weight: 700;
 }
+.cs-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.cs-stt {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 13px;
+  border-radius: 999px;
+  border: 1px solid rgba(243, 244, 238, 0.4);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.cs-stt.live {
+  border-color: var(--lime);
+  color: var(--lime);
+}
+.cs-act {
+  display: flex;
+  margin-top: 26px;
+}
+.cs-act .btn {
+  width: auto;
+  min-width: 0;
+}
 .cs-h {
   margin-top: 18px;
   font-family: var(--display);
@@ -3960,6 +4080,10 @@ body.cs-on .wk-cur {
   letter-spacing: -0.055em;
   line-height: 0.95;
   font-size: clamp(2.6rem, 9vw, 6rem);
+}
+/* a title with a very long word: smaller, so the word stays in one piece */
+.cs-h.long {
+  font-size: clamp(2.2rem, 7.4vw, 4.7rem);
 }
 .cs-sum {
   margin-top: 18px;
@@ -4065,7 +4189,15 @@ body.cs-on .wk-cur {
   margin-top: 8px;
   opacity: 0.8;
 }
+.cs-note {
+  margin-top: 16px;
+  max-width: 70ch;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  opacity: 0.6;
+}
 .cs-q {
+  margin: 0;
   margin-top: clamp(40px, 6vw, 64px);
   padding: clamp(24px, 4vw, 40px);
   border-radius: 28px;
@@ -4079,7 +4211,8 @@ body.cs-on .wk-cur {
   line-height: 1.15;
   font-size: clamp(1.5rem, 4vw, 2.4rem);
 }
-.cs-q cite {
+.cs-q cite,
+.cs-q figcaption {
   display: block;
   margin-top: 16px;
   font-style: normal;
@@ -4165,7 +4298,9 @@ body.cs-on .wk-cur {
 }
 @media (min-width: 760px) {
   .cs-meta {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
   }
   .cs-stats {
     grid-template-columns: repeat(3, 1fr);

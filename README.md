@@ -38,10 +38,34 @@ To look at the site locally: `python3 -m http.server` and open
 - E-mail address, phone and WhatsApp number in `js/data.js`.
 - The studio name (`yourname` / `YN`) in `js/data.js`, `js/i18n.js`, `src/`
   and `favicon.svg`.
-- The projects in `js/data.js` are invented examples.
 - Legal pages: put the real text in `src/legal/` and change `ready: no` to
   `ready: yes` in the first line of each file. Until then they show a
   placeholder note and are hidden from search engines.
+
+## Projects
+
+Every project in `js/data.js` has a `status`:
+
+- `live`: a real client project. It may show a client, a timeline, results
+  and a quote, but only ones that are real. Leave out what you do not have,
+  the section then simply does not appear.
+- `concept`: our own work for a fictional brand. The page says so, shows the
+  design idea instead of a testimonial and links to the demo. `node build.mjs`
+  stops if a concept has a quote or a timeline.
+
+Numbers under "The result" are measured (Lighthouse) or counted in the demo
+itself. Never put a business result there that nobody measured.
+
+The covers are real screenshots in `img/work/`: `<id>-d-1440.webp` and
+`<id>-d-720.webp` (desktop, 1440 x 900) and `<id>-m.webp` (phone, 390 x 780).
+The browser and phone frames around them are drawn in CSS.
+
+To take them again after a demo changed or a project was added:
+
+```
+npm i --no-save playwright-core sharp     # once; the site itself needs no packages
+node tools/shots.mjs                      # all projects, or: node tools/shots.mjs kornblume
+```
 
 ## Link preview image
 

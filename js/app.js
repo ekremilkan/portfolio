@@ -626,7 +626,7 @@
     }, 1150);
   }
   if (pre && !reduce) {
-    var num = document.getElementById("preNum"),
+    var preNum = document.getElementById("preNum"),
       pbar = pre.querySelector(".pre-bar i"),
       pt0 = performance.now(),
       fontsOk = false;
@@ -641,7 +641,7 @@
     requestAnimationFrame(function step(now) {
       var p = Math.max(0, Math.min(1, (now - pt0) / 1300)),
         e = 1 - Math.pow(1 - p, 3);
-      num.textContent = Math.round(e * 100);
+      preNum.textContent = Math.round(e * 100);
       pbar.style.transform = "scaleX(" + e + ")";
       if (p < 1 || !fontsOk) requestAnimationFrame(step);
       else finishPre();
@@ -991,6 +991,31 @@
           ? TT("sv2")
           : TT("wk_app");
   }
+  /* cat is 'web' or ['web','app']: a project can sit in more than one filter */
+  function catsOf(p) {
+    return Array.isArray(p.cat) ? p.cat : [p.cat];
+  }
+  function catLabel(p) {
+    return catsOf(p).map(catName).join(" · ");
+  }
+  /* status: 'live' = real client project, anything else = concept */
+  function isLive(p) {
+    return p.status === "live";
+  }
+  function stName(p, long) {
+    return TT((isLive(p) ? "st_live" : "st_con") + (long ? "_l" : ""));
+  }
+
+  /* every word of a title is one block: a line breaks between words first,
+     and inside a long word (at its soft hyphen) only when it has to */
+  function titleHTML(t) {
+    return t
+      .split(" ")
+      .map(function (w) {
+        return '<span class="tw">' + esc(w) + "</span>";
+      })
+      .join(" ");
+  }
 
   /* --- generated cover art --- */
   function S(x, y, w, h, bg, r, ex) {
@@ -1214,13 +1239,38 @@
       );
     },
   };
-  function artHTML(p) {
-    return p.img
-      ? '<img src="' +
-          esc(p.img) +
-          '" alt="' +
-          esc(p.title) +
-          '" loading="lazy">'
+  /* real screenshots in a browser and a phone frame. p.shot is the file
+     stem: <stem>-d-720.webp, <stem>-d-1440.webp (desktop) and <stem>-m.webp */
+  function shotHTML(p, big) {
+    var s = ROOT + p.shot,
+      lazy = big ? "" : ' loading="lazy"';
+    return (
+      '<div class="aw sw sw-d' +
+      (p.dark ? " dk" : "") +
+      '"><span class="ab"></span><img src="' +
+      esc(s) +
+      '-d-720.webp" srcset="' +
+      esc(s) +
+      "-d-720.webp 720w, " +
+      esc(s) +
+      '-d-1440.webp 1440w" sizes="' +
+      (big ? "(min-width:1000px) 800px, 80vw" : "(min-width:640px) 420px, 70vw") +
+      '" width="1440" height="900" alt=""' +
+      lazy +
+      ' decoding="async"></div><div class="aw sw sw-m"><img src="' +
+      esc(s) +
+      '-m.webp" width="390" height="780" alt=""' +
+      lazy +
+      ' decoding="async"></div>'
+    );
+  }
+  function artHTML(p, big) {
+    return p.shot
+      ? '<div class="art" role="img" aria-label="' +
+          esc(TT("al_shot").replace("{n}", p.title)) +
+          '"><div class="af shot">' +
+          shotHTML(p, big) +
+          "</div></div>"
       : '<div class="art"><div class="af">' +
           (ART[p.art] || ART.site)() +
           "</div></div>";
@@ -1234,7 +1284,7 @@
     var out = [{ k: "all", n: PJ.length }];
     ["web", "shop", "app"].forEach(function (k) {
       var n = PJ.filter(function (p) {
-        return p.cat === k;
+        return catsOf(p).indexOf(k) > -1;
       }).length;
       if (n) out.push({ k: k, n: n });
     });
@@ -1280,12 +1330,15 @@
 
   /* --- cards --- */
   function cardText(c, p) {
-    c.querySelector(".wk-cat").textContent = catName(p.cat);
-    c.querySelector(".wk-res span").textContent = L(p.result);
+    var res = c.querySelector(".wk-res");
+    c.querySelector(".wk-cat").textContent = catLabel(p);
+    c.querySelector(".wk-st").textContent = stName(p);
+    res.hidden = !p.fact;
+    res.querySelector("span").textContent = L(p.fact) || "";
     c.querySelector(".wk-cl").textContent = L(p.client);
-    c.querySelector(".wk-t span").textContent = p.title;
+    c.querySelector(".wk-t span").innerHTML = titleHTML(p.title);
     c.querySelector(".wk-s").textContent = L(p.summary);
-    c.setAttribute("aria-label", p.title + ", " + L(p.result));
+    c.setAttribute("aria-label", p.title + ", " + stName(p, true));
   }
   function cardEl(p, i) {
     var c = document.createElement("article");
@@ -1297,10 +1350,12 @@
       '<div class="wk-cover" style="' +
       cvars(p) +
       '">' +
-      artHTML(p) +
-      '<span class="wk-cat"></span><span class="wk-yr">' +
+      artHTML(p, true) +
+      '<span class="wk-cat"></span><span class="wk-tr"><span class="wk-st' +
+      (isLive(p) ? " live" : "") +
+      '"></span><span class="wk-yr">' +
       p.year +
-      '</span><span class="wk-res"><svg><use href="#ar"/></svg><span></span></span></div>' +
+      '</span></span><span class="wk-res"><svg><use href="#ar"/></svg><span></span></span></div>' +
       '<div class="wk-info"><p class="wk-cl"></p><h3 class="wk-t"><span></span><i class="wk-arr"><svg><use href="#ar"/></svg></i></h3><p class="wk-s"></p><ul class="wk-tags">' +
       p.tags
         .map(function (t) {
@@ -1326,7 +1381,7 @@
   function matches() {
     var m = [];
     PJ.forEach(function (p, i) {
-      if (WK.f === "all" || p.cat === WK.f) m.push(i);
+      if (WK.f === "all" || catsOf(p).indexOf(WK.f) > -1) m.push(i);
     });
     return m;
   }
@@ -1540,80 +1595,146 @@
   }
 
   /* --- case study --- */
+  function btnHTML(cls, label, attrs) {
+    return (
+      '<a class="cta btn ' +
+      cls +
+      ' btn-s" ' +
+      attrs +
+      '><span class="fill"></span><span class="roll" data-t="' +
+      esc(label) +
+      '"><span>' +
+      esc(label) +
+      '</span></span><span class="ico"><svg><use href="#ar"/></svg><svg><use href="#ar"/></svg></span></a>'
+    );
+  }
+  /* the link out: the live site of a client project, the demo of a concept */
+  function outHTML(p, cls) {
+    var u = L(p.url);
+    return u
+      ? btnHTML(
+          cls,
+          TT(isLive(p) ? "cs_live" : "cs_demo"),
+          'href="' + esc(u) + '" target="_blank" rel="noopener"',
+        )
+      : "";
+  }
+  function metaHTML(k, v) {
+    return v ? "<div><dt>" + k + "</dt><dd>" + esc(v) + "</dd></div>" : "";
+  }
+  /* p.lh holds one Lighthouse measurement of the public demo. Two numbers
+     become tiles, the rest is spelled out in the note below them. */
+  function lhStats(p) {
+    var m = p.lh;
+    return m
+      ? [
+          { n: m.perf, l: TT("lh_perf") },
+          { n: m.lcp, d: 1, s: TT("lh_sec"), l: TT("lh_lcp") },
+        ]
+      : [];
+  }
+  function lhNote(p) {
+    var m = p.lh;
+    if (!m) return L(p.note) || "";
+    var day = new Intl.DateTimeFormat(locOf(curLang || "en"), {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+      timeZone: "UTC",
+    }).format(new Date(m.on + "T00:00:00Z"));
+    return TT("lh_note")
+      .replace("{date}", day)
+      .replace("{ver}", m.ver)
+      .replace("{a11y}", m.a11y)
+      .replace("{bp}", m.bp)
+      .replace("{mp}", m.mPerf)
+      .replace("{ml}", num(m.mLcp, 1) + TT("lh_sec"))
+      .replace(
+        "{seo}",
+        m.seo == null ? TT("lh_noidx") : TT("lh_seo").replace("{n}", m.seo),
+      );
+  }
   function caseHTML(p, i) {
     var t = T[curLang || "en"],
+      stats = lhStats(p).concat(p.stats || []),
+      note = lhNote(p),
+      live = isLive(p),
       h = "";
     h +=
-      '<div class="cs-in"><span class="cs-pill">' +
-      esc(catName(p.cat)) +
+      '<div class="cs-in"><div class="cs-top"><span class="cs-pill">' +
+      esc(catLabel(p)) +
       " · " +
       p.year +
-      '</span><h2 class="cs-h" id="csT">' +
-      esc(p.title) +
+      '</span><span class="cs-stt' +
+      (live ? " live" : "") +
+      '">' +
+      esc(stName(p, true)) +
+      '</span></div><h2 class="cs-h' +
+      (/[^\s\-]{14,}/.test(p.title.replace(/\u00AD/g, "")) ? " long" : "") +
+      '" id="csT">' +
+      titleHTML(p.title) +
       '</h2><p class="cs-sum">' +
       esc(L(p.summary)) +
       "</p>";
+    if (L(p.url)) h += '<div class="cs-act">' + outHTML(p, "btn-p") + "</div>";
+    /* a concept has no client: say so instead of naming one */
     h +=
-      '<dl class="cs-meta"><div><dt>' +
-      t.cs_type +
-      "</dt><dd>" +
-      esc(L(p.client)) +
-      "</dd></div><div><dt>" +
-      t.cs_svc +
-      "</dt><dd>" +
-      esc(catName(p.cat)) +
-      "</dd></div><div><dt>" +
-      t.cs_time +
-      "</dt><dd>" +
-      esc(L(p.time)) +
-      "</dd></div><div><dt>" +
-      t.cs_year +
-      "</dt><dd>" +
-      p.year +
-      "</dd></div></dl>";
-    h +=
-      '<div class="cs-sec"><div class="cs-lab">' +
-      t.cs_chal +
-      '</div><p class="cs-p">' +
-      esc(L(p.challenge)) +
-      "</p></div>";
-    h +=
-      '<div class="cs-sec"><div class="cs-lab">' +
-      t.cs_did +
-      '</div><ol class="cs-steps">' +
-      p.did
-        .map(function (d) {
-          return "<li>" + esc(L(d)) + "</li>";
-        })
-        .join("") +
-      "</ol></div>";
-    h +=
-      '<div class="cs-sec"><div class="cs-lab">' +
-      t.cs_res +
-      '</div><div class="cs-stats">' +
-      p.stats
-        .map(function (s) {
-          var suf = L(s.s) || "",
-            pre = L(s.p) || "";
-          return (
-            '<div class="cs-st"><b data-n="' +
-            s.n +
-            '" data-d="' +
-            (s.d || 0) +
-            '" data-p="' +
-            esc(pre) +
-            '" data-s="' +
-            esc(suf) +
-            '">' +
-            esc(pre + num(0, s.d) + suf) +
-            "</b><span>" +
-            esc(L(s.l)) +
-            "</span></div>"
-          );
-        })
-        .join("") +
-      "</div></div>";
-    if (p.quote)
+      '<dl class="cs-meta">' +
+      metaHTML(t.cs_type, live ? L(p.client) : t.cs_fict) +
+      metaHTML(t.cs_svc, catLabel(p)) +
+      metaHTML(t.cs_time, L(p.time)) +
+      metaHTML(t.cs_year, p.year) +
+      "</dl>";
+    if (p.challenge)
+      h +=
+        '<div class="cs-sec"><div class="cs-lab">' +
+        t.cs_chal +
+        '</div><p class="cs-p">' +
+        esc(L(p.challenge)) +
+        "</p></div>";
+    if (p.did && p.did.length)
+      h +=
+        '<div class="cs-sec"><div class="cs-lab">' +
+        t.cs_did +
+        '</div><ol class="cs-steps">' +
+        p.did
+          .map(function (d) {
+            return "<li>" + esc(L(d)) + "</li>";
+          })
+          .join("") +
+        "</ol></div>";
+    /* only measured values belong here; no stats, no section */
+    if (stats.length)
+      h +=
+        '<div class="cs-sec"><div class="cs-lab">' +
+        t.cs_res +
+        '</div><div class="cs-stats">' +
+        stats
+          .map(function (s) {
+            var suf = L(s.s) || "",
+              pre = L(s.p) || "";
+            return (
+              '<div class="cs-st"><b data-n="' +
+              s.n +
+              '" data-d="' +
+              (s.d || 0) +
+              '" data-p="' +
+              esc(pre) +
+              '" data-s="' +
+              esc(suf) +
+              '">' +
+              esc(pre + num(0, s.d) + suf) +
+              "</b><span>" +
+              esc(L(s.l)) +
+              "</span></div>"
+            );
+          })
+          .join("") +
+        "</div>" +
+        (note ? '<p class="cs-note">' + esc(note) + "</p>" : "") +
+        "</div>";
+    /* a testimonial only for a real client; a concept shows its design idea */
+    if (live && p.quote)
       h +=
         '<blockquote class="cs-q"><p>“' +
         esc(L(p.quote.t)) +
@@ -1622,6 +1743,15 @@
         ", " +
         esc(p.title) +
         "</cite></blockquote>";
+    else if (!live && p.idea)
+      h +=
+        '<figure class="cs-q"><p>' +
+        esc(L(p.idea)) +
+        "</p><figcaption>" +
+        esc(t.cs_idea) +
+        " · " +
+        esc(p.title) +
+        "</figcaption></figure>";
     h +=
       '<div class="cs-sec"><div class="cs-lab">' +
       t.cs_tech +
@@ -1636,20 +1766,9 @@
     h +=
       '<div class="cs-foot"><div class="cs-cta"><h3>' +
       t.cs_ct +
-      '</h3><div class="row"><a class="cta btn btn-p btn-s" href="#pricing" data-close><span class="fill"></span><span class="roll" data-t="' +
-      esc(t.cs_cb) +
-      '"><span>' +
-      esc(t.cs_cb) +
-      '</span></span><span class="ico"><svg><use href="#ar"/></svg><svg><use href="#ar"/></svg></span></a>' +
-      (p.url
-        ? '<a class="cta btn btn-g btn-s" href="' +
-          esc(p.url) +
-          '" target="_blank" rel="noopener"><span class="fill"></span><span class="roll" data-t="' +
-          esc(t.cs_live) +
-          '"><span>' +
-          esc(t.cs_live) +
-          '</span></span><span class="ico"><svg><use href="#ar"/></svg><svg><use href="#ar"/></svg></span></a>'
-        : "") +
+      '</h3><div class="row">' +
+      btnHTML("btn-p", t.cs_cb, 'href="#pricing" data-close') +
+      outHTML(p, "btn-g") +
       "</div></div>" +
       '<button class="cs-next" type="button" data-go="1"><div class="nc" style="' +
       cvars(nx) +
@@ -1657,6 +1776,8 @@
       artHTML(nx) +
       "</div><small>" +
       t.cs_next +
+      " · " +
+      esc(stName(nx)) +
       "</small><b>" +
       esc(nx.title) +
       "</b></button></div></div>";
@@ -1684,7 +1805,7 @@
     var p = PJ[i];
     WK.open = i;
     csCover.style.cssText = cvars(p);
-    csCover.innerHTML = artHTML(p);
+    csCover.innerHTML = artHTML(p, true);
     csBody.innerHTML = caseHTML(p, i);
     csIdx.textContent = pad(i + 1) + " / " + pad(PJ.length);
     cs.setAttribute("aria-label", p.title);
@@ -1783,9 +1904,9 @@
     r.firstElementChild.textContent = txt;
   }
   function shRailText(li, p) {
-    li.querySelector("small").textContent = catName(p.cat) + " · " + p.year;
+    li.querySelector("small").textContent = stName(p) + " · " + catLabel(p);
     li.querySelector("b").textContent = p.title;
-    li.querySelector("em").textContent = L(p.result);
+    li.querySelector("em").textContent = L(p.fact) || "";
     li.querySelector("button").setAttribute("aria-label", p.title);
   }
   function shBuild() {

@@ -29,7 +29,7 @@ function write(f, s) {
 const win = {};
 for (const f of ["js/i18n.js", "js/data.js"])
   vm.runInNewContext(read(f), { window: win, Intl, Date });
-const { T, PRICING, FOOTER, SITE, FORM, CURRENCY } = win;
+const { T, PRICING, FOOTER, SITE, FORM, CURRENCY, PROJECTS } = win;
 
 /* the first language is the main one: it lives at "/" and is x-default.
    ix = position of the language in the ['English','Deutsch','Türkçe'] triples */
@@ -178,6 +178,7 @@ function page(tpl, l) {
     .replaceAll("{{root}}", rootOf(l))
     .replaceAll("{{title}}", esc(t.meta_t))
     .replaceAll("{{desc}}", attr(t.meta_d))
+    .replaceAll("{{count}}", String(PROJECTS.length).padStart(2, "0"))
     .replace("{{head}}", headOf(l));
 }
 
@@ -210,8 +211,36 @@ function legal(layout, name) {
   };
 }
 
+/* ---- projects: the honesty rules of js/data.js, checked on every build ----
+   A concept has no client, so it can have no testimonial and no timeline.
+   Every screenshot a project names has to be on disk. */
+function checkProjects() {
+  const bad = [],
+    ids = new Set();
+  for (const p of PROJECTS) {
+    const say = (m) => bad.push(`${p.id || "?"}: ${m}`);
+    if (!p.id || ids.has(p.id)) say("id is missing or used twice");
+    ids.add(p.id);
+    if (p.status !== "live" && p.status !== "concept")
+      say('status must be "live" or "concept"');
+    if (p.status === "concept" && (p.quote || p.time))
+      say("a concept project cannot have a quote or a timeline");
+    for (const c of [].concat(p.cat))
+      if (!["web", "shop", "app"].includes(c)) say(`unknown cat "${c}"`);
+    for (const k of ["client", "summary"])
+      if (!Array.isArray(p[k]) || p[k].length !== LANGS.length)
+        say(`${k} needs one text per language`);
+    if (p.shot)
+      for (const f of ["-d-720.webp", "-d-1440.webp", "-m.webp"])
+        if (!fs.existsSync(path.join(DIR, p.shot + f)))
+          say(`screenshot ${p.shot + f} is missing`);
+  }
+  if (bad.length) throw new Error("js/data.js PROJECTS\n  " + bad.join("\n  "));
+}
+
 /* ---- run ---- */
 console.log("Building " + (URL0 || "(no SITE.url)"));
+checkProjects();
 const tpl = read("src/index.html");
 for (const l of LANGS) {
   const out = page(tpl, l),
