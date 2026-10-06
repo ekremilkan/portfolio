@@ -1879,7 +1879,7 @@ window.PRICING = {
    "node build.mjs" again.
    ========================================================================== */
 window.SITE = {
-  url: "https://www.yourdomain.com",
+  url: "https://ekremilkan.github.io/portfolio",
   name: "Yourname",
 };
 /* ==========================================================================

@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://www.yourdomain.com/</loc>
+    <loc>https://ekremilkan.github.io/portfolio/</loc>
     <lastmod>2026-10-06</lastmod>
-    <xhtml:link rel="alternate" hreflang="de" href="https://www.yourdomain.com/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.yourdomain.com/en/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://www.yourdomain.com/tr/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.yourdomain.com/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://ekremilkan.github.io/portfolio/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ekremilkan.github.io/portfolio/en/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://ekremilkan.github.io/portfolio/tr/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ekremilkan.github.io/portfolio/" />
   </url>
   <url>
-    <loc>https://www.yourdomain.com/en/</loc>
+    <loc>https://ekremilkan.github.io/portfolio/en/</loc>
     <lastmod>2026-10-06</lastmod>
-    <xhtml:link rel="alternate" hreflang="de" href="https://www.yourdomain.com/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.yourdomain.com/en/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://www.yourdomain.com/tr/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.yourdomain.com/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://ekremilkan.github.io/portfolio/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ekremilkan.github.io/portfolio/en/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://ekremilkan.github.io/portfolio/tr/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ekremilkan.github.io/portfolio/" />
   </url>
   <url>
-    <loc>https://www.yourdomain.com/tr/</loc>
+    <loc>https://ekremilkan.github.io/portfolio/tr/</loc>
     <lastmod>2026-10-06</lastmod>
-    <xhtml:link rel="alternate" hreflang="de" href="https://www.yourdomain.com/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.yourdomain.com/en/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://www.yourdomain.com/tr/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.yourdomain.com/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://ekremilkan.github.io/portfolio/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ekremilkan.github.io/portfolio/en/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://ekremilkan.github.io/portfolio/tr/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ekremilkan.github.io/portfolio/" />
   </url>
 </urlset>
