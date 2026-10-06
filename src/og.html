@@ -1,0 +1,79 @@
+<!doctype html>
+<!-- Source of og.png, the 1200x630 image shown when the site is shared in a
+     chat or on social media. To make the PNG again, see README. -->
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      @font-face {
+        font-family: "Syne";
+        font-weight: 700 800;
+        src: url("../fonts/syne-latin.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Instrument Sans";
+        font-weight: 400 600;
+        src: url("../fonts/instrument-sans-latin.woff2") format("woff2");
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+      body {
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 64px 72px;
+        background:
+          radial-gradient(700px 460px at 100% 0%, rgba(182, 255, 60, 0.2), transparent 70%),
+          #0d0e0c;
+        color: #f3f4ee;
+        font-family: "Instrument Sans", sans-serif;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        font-size: 30px;
+        font-weight: 600;
+      }
+      .logo i {
+        display: grid;
+        place-items: center;
+        width: 60px;
+        height: 60px;
+        border-radius: 18px;
+        background: #b6ff3c;
+        color: #0d0e0c;
+        font: 800 24px "Syne", sans-serif;
+      }
+      h1 {
+        font: 800 88px/0.98 "Syne", sans-serif;
+        letter-spacing: -0.03em;
+      }
+      h1 em {
+        font-style: normal;
+        color: #b6ff3c;
+      }
+      p {
+        display: flex;
+        gap: 14px;
+        font-size: 26px;
+        font-weight: 500;
+      }
+      p span {
+        padding: 10px 22px;
+        border: 1.5px solid rgba(243, 244, 238, 0.3);
+        border-radius: 999px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="logo"><i>YN</i>yourname</div>
+    <h1>Websites, Onlineshops<br />&amp; <em>Web-Apps.</em></h1>
+    <p><span>Webdesign</span><span>E-Commerce</span><span>Webentwicklung</span></p>
+  </body>
+</html>

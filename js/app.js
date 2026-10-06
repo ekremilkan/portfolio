@@ -1,921 +1,34 @@
 (function () {
-  var T = {
-    en: {
-      ft_eb: "Let's work together",
-      ft_h1: "Have an idea?",
-      ft_h2: "Let's build it.",
-      ft_d:
-        "Tell us what you need. Within one working day you get an honest answer and a written quote.",
-      ft_b: "Start a project",
-      ft_about:
-        "A digital studio in Germany, working worldwide. We build modern websites, online shops and custom web applications around your business.",
-      ft_top: "Back to top",
-      ft_c1: "Navigate",
-      ft_c2: "Services",
-      ft_c3: "Contact",
-      ft_c4: "Follow",
-      ft_made: "Made in Germany",
-      ft_copied: "Email copied",
-      es_eb: "An easy first step",
-      es_h1: "Not sure what your",
-      es_h2: "project will cost?",
-      es_d:
-        "Answer a few simple questions and watch your estimate build live. No technical knowledge needed.",
-      es_b: "Get your estimate",
-      es_p1: "About 1 minute",
-      es_p2: "No sign-up",
-      es_p3: "No obligation",
-      work: "Work",
-      services: "Services",
-      pricing: "Pricing",
-      contact: "Contact",
-      why: "Why us",
-      wk_browse: "Browse all projects",
-      wk_hide: "Hide all projects",
-      wk_pause: "Pause",
-      wk_playb: "Play",
-      wk_prev: "Previous project",
-      wk_nextb: "Next project",
-      wa_t: "Chat on WhatsApp",
-      cta: "Get a quote",
-      cta_m: "Get a quote",
-      go: "Go to",
-      pk_eb: "Pricing",
-      pk_h1: "Clear prices,",
-      pk_h2: "tailored to your project.",
-      pk_lead:
-        "Each package is a fair starting point, not a fixed box. Need less? We scale the scope down, and the price with it.",
-      pk_ask: "What do you want to do?",
-      pk_best: "Best fit for you",
-      pk_get: "Request a quote",
-      pk_talk: "Let's talk",
-      pk_from: "From",
-      pk_once: "one-time",
-      pk_q: "Simpler needs?",
-      pk_on: "Lighter setup",
-      pk_off: "",
-      pk_solo: "Already our lightest option.",
-      pk_cap:
-        "Starting prices in euros. You always get a written quote before we start.",
-      pk_cu_t: "Custom projects",
-      pk_cu_h: "Something else in mind?",
-      pk_cu_d:
-        "Bigger scope, special integrations or an idea that does not fit a box. Tell us the problem and we shape the solution and the price around it.",
-      pk_cu_p: "Priced after a short call",
-      pk_m1: "Integrations",
-      pk_m2: "Dashboards",
-      pk_m3: "Automation",
-      pk_m4: "APIs",
-      pk_m5: "Migrations",
-      pk_inc: "Every package includes",
-      pk_i1: "A written quote before we start",
-      pk_i2: "Responsive on every device",
-      pk_i3: "Basic SEO setup",
-      pk_i4: "Hosting and domain set up",
-      pk_i5: "30 days of support after launch",
-      pk_fq_h: "Questions before you decide?",
-      pk_fq_d: "Not listed here? Ask us directly.",
-      pk_fq_a: "Send an email",
-      mq_s: "Quote request:",
-      mq_b1: "Hi! I would like a quote for:",
-      mq_b2: "A few words about my project:",
-      mq_c: "Custom project",
-      wy_eb: "Why work with us",
-      wy_h1: "Good work is built on",
-      wy_h2: "good relationships.",
-      wy_lead:
-        "We answer our own emails, put the price in writing and pick the simplest tool that solves the problem.",
-      wy1t: "Transparent",
-      wy1d: "Clear scope and straightforward pricing.",
-      wy2t: "Personal",
-      wy2d: "Direct communication without unnecessary layers.",
-      wy3t: "Modern",
-      wy3d: "Current technology and contemporary design practice.",
-      wy4t: "Practical",
-      wy4d: "The right fix for the business problem, not the latest buzzword.",
-      wy_o0: "Your offer",
-      wy_o1: "Scope",
-      wy_o1v: "5 pages",
-      wy_o2: "Timeline",
-      wy_o2v: "2 weeks",
-      wy_o3: "Revisions",
-      wy_o3v: "2 rounds",
-      wy_o4: "Price",
-      wy_o4v: "Fixed",
-      wy_o5: "In writing",
-      wy_c1: "Can we make the hero image bigger?",
-      wy_c2: "Done. Preview is live.",
-      wy_c3: "Answers within one working day",
-      wy_b1: "Blockchain",
-      wy_b2: "AI everywhere",
-      wy_b3: "Microservices",
-      wy_b4: "A simple site that sells",
-      wy_e1: "Sounds like a good fit?",
-      wy_e2:
-        "Tell us about your project. You get an honest answer, not a sales pitch.",
-      wk_eb: "Selected work",
-      wk_h1: "Real projects.",
-      wk_h2: "Real results.",
-      wk_lead:
-        "A few recent projects. Open one to see where the client started, what we built and what changed.",
-      wk_all: "All",
-      wk_app: "Web apps",
-      wk_cnt: "projects",
-      wk_view: "View",
-      wk_go: "Start",
-      wk_more: "Show more projects",
-      wk_nt: "Your project could be here.",
-      wk_nd: "Tell us what you want to build.",
-      cs_chal: "The challenge",
-      cs_did: "What we did",
-      cs_res: "The result",
-      cs_tech: "Built with",
-      cs_type: "Client",
-      cs_year: "Year",
-      cs_time: "Timeline",
-      cs_svc: "Service",
-      cs_next: "Next project",
-      cs_live: "Visit live site",
-      cs_ct: "Want something like this?",
-      cs_cb: "Let's talk",
-      wa: "What we do",
-      wb: "Digital work with",
-      wc: "a clear purpose.",
-      wd:
-        "We do not start with a template. We start with what needs to become clearer, easier or more valuable for your customers.",
-      tg1: "Most popular starting point",
-      sv1: "Websites",
-      sd1:
-        "Websites that explain your offer in seconds, build credibility and guide the right people towards action.",
-      sb1: "Strategy & structure",
-      sb2: "Responsive UI design",
-      sb3: "Conversion-focused copy",
-      sb4: "Technical SEO",
-      tm1: "1–2 weeks",
-      fr1: "Local businesses, freelancers, startups",
-      q1: "Get a website quote",
-      tg2: "For selling online",
-      sv2: "E-commerce",
-      sd2:
-        "Online shops that make buying feel effortless: clear products, a fast checkout and a setup you can manage yourself.",
-      sb5: "Product & catalogue setup",
-      sb6: "Secure checkout & payments",
-      sb7: "Shipping, tax & invoices",
-      sb8: "Simple stock management",
-      tm2: "3–5 weeks",
-      fr2: "Small brands and retailers moving online",
-      q2: "Get a shop quote",
-      tg3: "For custom workflows",
-      sv3: "Web applications",
-      sd3:
-        "Custom tools that replace spreadsheets and manual work: dashboards, portals and internal systems built around how your team really works.",
-      sb9: "Dashboards & reporting",
-      sb10: "Logins & user roles",
-      sb11: "Integrations & APIs",
-      sb12: "Automation of manual tasks",
-      tm3: "6–12 weeks",
-      fr3: "Teams outgrowing spreadsheets and manual processes",
-      q3: "Get an app quote",
-      fl1: "Typical timeline",
-      fl2: "Best for",
-      wv1: "Loads in under 1 s",
-      wv2: "SEO ready",
-      wv3: "Mobile-first",
-      sh1: "Cart",
-      sh2: "Pay now",
-      sh3: "Order confirmed",
-      sh4: "Total",
-      av1: "Users",
-      av2: "Orders",
-      av3: "Uptime",
-      av4: "Pending",
-      av5: "Active",
-      av6: "Synced with your tools",
-      pt1: "Fixed price upfront",
-      pd1: "You know the cost before we start.",
-      pt2: "You own everything",
-      pd2: "Code, content and domains are yours.",
-      pt3: "Clear updates",
-      pd3: "You always know where things stand, in plain language.",
-      pt4: "Support after launch",
-      pd4: "We stay on hand when your needs change.",
-      fh: "How a project runs",
-      ft1: "Talk",
-      fd1: "A free call to understand your goal.",
-      ft2: "Plan",
-      fd2: "Scope, price and timeline in writing.",
-      ft3: "Build",
-      fd3: "Regular previews you can react to.",
-      ft4: "Launch & care",
-      fd4: "We go live, then keep it healthy.",
-      et: "Not sure what you need yet?",
-      ed:
-        "Tell us what you want to improve. If a simpler option is enough, we will say so.",
-      c1a: "Built for",
-      c1b: "business.",
-      c2a: "Designed to",
-      c2b: "convert.",
-      c3a: "Fast by",
-      c3b: "default.",
-      c4a: "Ready to",
-      c4b: "scale.",
-      o1: "New order",
-      o2: "Checkout",
-      v1: "Performance",
-      v2: "Accessibility",
-      v3: "SEO",
-      eb: "Digital studio in Germany, working worldwide",
-      l1: "Digital",
-      l2: "products",
-      l3: "for modern",
-      words: ["businesses.", "shops.", "brands.", "startups."],
-      sub:
-        "Modern websites, online shops and custom web applications built around your business.",
-      b1: "Start a project",
-      b2: "View our work",
-      chip: "Clear thinking. Careful craft.",
-      m1: "Go live",
-      m2: "Live in 0.4 s",
-      t1: "Websites",
-      t2: "Online shops",
-      t3: "Web apps",
-      t4: "APIs",
-      t5: "Automation",
-      sw: "Switch to {l}",
-      cmd_es: "Open price estimator",
-      lang_g: "Language",
-      meta_t: "yourname – Digital studio for web & apps",
-      meta_d:
-        "Modern websites, online shops and custom web applications from a digital studio in Germany, working worldwide.",
-      fx_note: "Indicative conversion (rate of {d}); invoicing is in EUR.",
-      al_main: "Main",
-      al_home: "Home",
-      al_kbd: "Open command menu",
-      al_menu: "Menu",
-      al_mobile: "Mobile",
-      al_cmd: "Command menu",
-      al_close: "Close",
-      al_prev: "Previous",
-      al_next: "Next",
-      al_hero: "Studio highlights",
-      al_slide: "Slide {n}",
-      al_filter: "Filter",
-      al_projects: "Projects",
-      al_footer: "Footer",
-      ph: "Jump to a section or run a command…",
-      none: "No results",
-      avail: "Taking on new projects",
-      s1t: "Web apps",
-      s1d: "Fast, accessible interfaces.",
-      s2t: "Backend & APIs",
-      s2d: "Clean, documented services.",
-      s3t: "Automation",
-      s3d: "Scripts that save hours.",
-      h1: "I build software that ships.",
-      lead:
-        "Demo content. Hover Work and Services, press Ctrl/⌘ K, then scroll to watch the bar fold into a pill.",
-    },
-    de: {
-      ft_eb: "Lass uns zusammenarbeiten",
-      ft_h1: "Du hast eine Idee?",
-      ft_h2: "Setzen wir sie um.",
-      ft_d:
-        "Sag uns, was du brauchst. Du bekommst eine ehrliche Antwort und innerhalb eines Werktags ein schriftliches Angebot.",
-      ft_b: "Projekt starten",
-      ft_about:
-        "Ein Digitalstudio in Deutschland, weltweit aktiv. Wir bauen moderne Websites, Onlineshops und individuelle Webanwendungen, passend zu deinem Unternehmen.",
-      ft_top: "Nach oben",
-      ft_c1: "Navigation",
-      ft_c2: "Leistungen",
-      ft_c3: "Kontakt",
-      ft_c4: "Folge uns",
-      ft_made: "Made in Germany",
-      ft_copied: "E-Mail kopiert",
-      es_eb: "Ein einfacher erster Schritt",
-      es_h1: "Unsicher, was dein",
-      es_h2: "Projekt kostet?",
-      es_d:
-        "Beantworte ein paar einfache Fragen und sieh live, wie deine Schätzung entsteht. Ganz ohne Technikwissen.",
-      es_b: "Schätzung starten",
-      es_p1: "Etwa 1 Minute",
-      es_p2: "Ohne Anmeldung",
-      es_p3: "Unverbindlich",
-      work: "Projekte",
-      services: "Leistungen",
-      pricing: "Preise",
-      contact: "Kontakt",
-      why: "Warum wir",
-      wk_browse: "Alle Projekte ansehen",
-      wk_hide: "Projekte ausblenden",
-      wk_pause: "Pause",
-      wk_playb: "Abspielen",
-      wk_prev: "Vorheriges Projekt",
-      wk_nextb: "Nächstes Projekt",
-      wa_t: "Per WhatsApp schreiben",
-      cta: "Angebot anfragen",
-      cta_m: "Anfragen",
-      go: "Gehe zu",
-      pk_eb: "Preise",
-      pk_h1: "Klare Preise,",
-      pk_h2: "passend zu deinem Projekt.",
-      pk_lead:
-        "Jedes Paket ist ein fairer Startpunkt, kein starres Korsett. Brauchst du weniger, passen wir Umfang und Preis nach unten an.",
-      pk_ask: "Was möchtest du erreichen?",
-      pk_best: "Passt am besten zu dir",
-      pk_get: "Angebot anfragen",
-      pk_talk: "Lass uns reden",
-      pk_from: "Ab",
-      pk_once: "einmalig",
-      pk_q: "Weniger nötig?",
-      pk_on: "Schlankere Variante",
-      pk_off: "",
-      pk_solo: "Schon unsere schlankeste Option.",
-      pk_cap:
-        "Startpreise in Euro. Du bekommst immer ein schriftliches Angebot, bevor wir starten.",
-      pk_cu_t: "Individuelle Projekte",
-      pk_cu_h: "Etwas anderes im Sinn?",
-      pk_cu_d:
-        "Größerer Umfang, besondere Schnittstellen oder eine Idee, die in kein Paket passt. Erzähl uns, worum es geht – wir entwickeln Lösung und Preis passend dazu.",
-      pk_cu_p: "Preis nach kurzem Gespräch",
-      pk_m1: "Integrationen",
-      pk_m2: "Dashboards",
-      pk_m3: "Automatisierung",
-      pk_m4: "APIs",
-      pk_m5: "Migrationen",
-      pk_inc: "In jedem Paket enthalten",
-      pk_i1: "Schriftliches Angebot vor dem Start",
-      pk_i2: "Responsiv auf jedem Gerät",
-      pk_i3: "Basis-SEO",
-      pk_i4: "Hosting und Domain eingerichtet",
-      pk_i5: "30 Tage Support nach dem Launch",
-      pk_fq_h: "Fragen vor der Entscheidung?",
-      pk_fq_d: "Nicht dabei? Frag uns direkt.",
-      pk_fq_a: "E-Mail schreiben",
-      mq_s: "Angebotsanfrage:",
-      mq_b1: "Hallo! Ich hätte gern ein Angebot für:",
-      mq_b2: "Ein paar Worte zu meinem Projekt:",
-      mq_c: "Individuelles Projekt",
-      wy_eb: "Warum wir",
-      wy_h1: "Gute Arbeit beginnt mit",
-      wy_h2: "guter Zusammenarbeit.",
-      wy_lead:
-        "Wir beantworten unsere Mails selbst, halten den Preis schriftlich fest und wählen das einfachste Werkzeug, das dein Problem löst.",
-      wy1t: "Transparent",
-      wy1d: "Klarer Umfang, faire und nachvollziehbare Preise.",
-      wy2t: "Persönlich",
-      wy2d: "Direkter Draht, keine unnötigen Zwischenstationen.",
-      wy3t: "Modern",
-      wy3d: "Aktuelle Technik und zeitgemäßes Design.",
-      wy4t: "Praktisch",
-      wy4d:
-        "Die Lösung, die dein Problem wirklich löst – nicht das nächste Buzzword.",
-      wy_o0: "Dein Angebot",
-      wy_o1: "Umfang",
-      wy_o1v: "5 Seiten",
-      wy_o2: "Zeitplan",
-      wy_o2v: "2 Wochen",
-      wy_o3: "Korrekturen",
-      wy_o3v: "2 Runden",
-      wy_o4: "Preis",
-      wy_o4v: "Festpreis",
-      wy_o5: "Schriftlich",
-      wy_c1: "Können wir das Hero-Bild größer machen?",
-      wy_c2: "Erledigt. Die Vorschau ist online.",
-      wy_c3: "Antwort innerhalb eines Werktags",
-      wy_b1: "Blockchain",
-      wy_b2: "KI überall",
-      wy_b3: "Microservices",
-      wy_b4: "Eine einfache Seite, die verkauft",
-      wy_e1: "Passt das zu dir?",
-      wy_e2:
-        "Erzähl uns von deinem Projekt. Du bekommst eine ehrliche Einschätzung statt eines Verkaufsgesprächs.",
-      wk_eb: "Referenzen",
-      wk_h1: "Echte Projekte.",
-      wk_h2: "Echte Ergebnisse.",
-      wk_lead:
-        "Eine Auswahl aktueller Projekte. Öffne eines und sieh dir an, wo der Kunde stand, was wir gebaut haben und was sich verändert hat.",
-      wk_all: "Alle",
-      wk_app: "Web-Apps",
-      wk_cnt: "Projekte",
-      wk_view: "Ansehen",
-      wk_go: "Starten",
-      wk_more: "Mehr Projekte zeigen",
-      wk_nt: "Hier könnte dein Projekt stehen.",
-      wk_nd: "Sag uns, was du bauen willst.",
-      cs_chal: "Die Ausgangslage",
-      cs_did: "Was wir gemacht haben",
-      cs_res: "Das Ergebnis",
-      cs_tech: "Umgesetzt mit",
-      cs_type: "Kunde",
-      cs_year: "Jahr",
-      cs_time: "Zeitrahmen",
-      cs_svc: "Leistung",
-      cs_next: "Nächstes Projekt",
-      cs_live: "Live-Seite ansehen",
-      cs_ct: "Du planst etwas Ähnliches?",
-      cs_cb: "Lass uns sprechen",
-      wa: "Was wir tun",
-      wb: "Digitale Lösungen",
-      wc: "mit echtem Nutzen.",
-      wd:
-        "Wir starten nicht mit einer Vorlage. Wir starten mit dem, was für deine Kunden klarer, einfacher oder wertvoller werden soll.",
-      tg1: "Beliebtester Einstieg",
-      sv1: "Websites",
-      sd1:
-        "Websites, die dein Angebot in Sekunden erklären, Vertrauen aufbauen und die richtigen Menschen zum Handeln führen.",
-      sb1: "Strategie & Struktur",
-      sb2: "Responsives UI-Design",
-      sb3: "Conversion-orientierte Texte",
-      sb4: "Technisches SEO",
-      tm1: "1–2 Wochen",
-      fr1: "Lokale Unternehmen, Selbstständige, Startups",
-      q1: "Website-Angebot anfragen",
-      tg2: "Für den Online-Verkauf",
-      sv2: "E-Commerce",
-      sd2:
-        "Onlineshops, in denen Kaufen mühelos wirkt: klare Produkte, ein schneller Checkout und ein System, das du selbst pflegen kannst.",
-      sb5: "Produkt- & Katalog-Setup",
-      sb6: "Sicherer Checkout & Zahlungen",
-      sb7: "Versand, Steuern & Rechnungen",
-      sb8: "Einfache Bestandsverwaltung",
-      tm2: "3–5 Wochen",
-      fr2: "Kleine Marken und Händler auf dem Weg ins Netz",
-      q2: "Shop-Angebot anfragen",
-      tg3: "Für individuelle Abläufe",
-      sv3: "Web-Anwendungen",
-      sd3:
-        "Individuelle Tools, die Tabellen und Handarbeit ersetzen: Dashboards, Portale und interne Systeme, gebaut für die Arbeitsweise deines Teams.",
-      sb9: "Dashboards & Reporting",
-      sb10: "Logins & Nutzerrollen",
-      sb11: "Integrationen & APIs",
-      sb12: "Automatisierung manueller Aufgaben",
-      tm3: "6–12 Wochen",
-      fr3: "Teams, die Tabellen und Handarbeit hinter sich lassen",
-      q3: "App-Angebot anfragen",
-      fl1: "Typischer Zeitrahmen",
-      fl2: "Ideal für",
-      wv1: "Lädt in unter 1 s",
-      wv2: "SEO-ready",
-      wv3: "Mobile-first",
-      sh1: "Warenkorb",
-      sh2: "Jetzt bezahlen",
-      sh3: "Bestellung bestätigt",
-      sh4: "Summe",
-      av1: "Nutzer",
-      av2: "Bestellungen",
-      av3: "Verfügbarkeit",
-      av4: "Offen",
-      av5: "Aktiv",
-      av6: "Mit deinen Tools synchronisiert",
-      pt1: "Festpreis vorab",
-      pd1: "Du kennst die Kosten, bevor wir starten.",
-      pt2: "Alles gehört dir",
-      pd2: "Code, Inhalte und Domains gehören dir.",
-      pt3: "Klare Updates",
-      pd3: "Du weißt jederzeit, wo wir stehen – in klarer Sprache.",
-      pt4: "Support nach dem Launch",
-      pd4: "Wir sind auch danach für dich da.",
-      fh: "So läuft ein Projekt",
-      ft1: "Gespräch",
-      fd1: "Ein kostenloses Gespräch, um dein Ziel zu verstehen.",
-      ft2: "Planung",
-      fd2: "Umfang, Preis und Zeitplan schriftlich.",
-      ft3: "Umsetzung",
-      fd3: "Regelmäßige Zwischenstände, zu denen du Feedback gibst.",
-      ft4: "Launch & Betreuung",
-      fd4: "Wir gehen live und halten alles in Schuss.",
-      et: "Noch unsicher, was du brauchst?",
-      ed:
-        "Sag uns, was du verbessern willst. Wenn eine einfachere Lösung reicht, sagen wir dir das.",
-      c1a: "Gebaut fürs",
-      c1b: "Geschäft.",
-      c2a: "Design,",
-      c2b: "das verkauft.",
-      c3a: "Schnell von",
-      c3b: "Anfang an.",
-      c4a: "Bereit für",
-      c4b: "Wachstum.",
-      o1: "Neue Bestellung",
-      o2: "Zur Kasse",
-      v1: "Performance",
-      v2: "Barrierefreiheit",
-      v3: "SEO",
-      eb: "Digitalstudio in Deutschland, weltweit aktiv",
-      l1: "Digitale",
-      l2: "Produkte",
-      l3: "für moderne",
-      words: ["Firmen.", "Shops.", "Marken.", "Startups."],
-      sub:
-        "Moderne Websites, Onlineshops und individuelle Webanwendungen, passend zu deinem Unternehmen.",
-      b1: "Projekt starten",
-      b2: "Projekte ansehen",
-      chip: "Klares Denken. Saubere Arbeit.",
-      m1: "Live gehen",
-      m2: "Live in 0,4 s",
-      t1: "Websites",
-      t2: "Onlineshops",
-      t3: "Web-Apps",
-      t4: "APIs",
-      t5: "Automatisierung",
-      sw: "Zu {l} wechseln",
-      cmd_es: "Projekt-Rechner öffnen",
-      lang_g: "Sprache",
-      meta_t: "yourname – Digitalstudio für Web & Apps",
-      meta_d:
-        "Moderne Websites, Onlineshops und individuelle Webanwendungen von einem Digitalstudio in Deutschland, weltweit aktiv.",
-      fx_note:
-        "Unverbindliche Umrechnung (Kurs vom {d}); abgerechnet wird in EUR.",
-      al_main: "Hauptnavigation",
-      al_home: "Startseite",
-      al_kbd: "Befehlsmenü öffnen",
-      al_menu: "Menü",
-      al_mobile: "Mobil",
-      al_cmd: "Befehlsmenü",
-      al_close: "Schließen",
-      al_prev: "Zurück",
-      al_next: "Weiter",
-      al_hero: "Studio-Highlights",
-      al_slide: "Folie {n}",
-      al_filter: "Filter",
-      al_projects: "Projekte",
-      al_footer: "Fußzeile",
-      ph: "Springe zu einem Bereich oder Befehl…",
-      none: "Keine Treffer",
-      avail: "Offen für neue Projekte",
-      s1t: "Web-Apps",
-      s1d: "Schnelle, barrierearme Oberflächen.",
-      s2t: "Backend & APIs",
-      s2d: "Saubere, dokumentierte Services.",
-      s3t: "Automatisierung",
-      s3d: "Skripte, die Stunden sparen.",
-      h1: "Ich baue Software, die live geht.",
-      lead:
-        "Demo-Inhalt. Fahre über Projekte und Leistungen, drücke Strg/⌘ K und scrolle, um die Leiste zur Pille werden zu sehen.",
-    },
-    tr: {
-      ft_eb: "Birlikte çalışalım",
-      ft_h1: "Bir fikriniz mi var?",
-      ft_h2: "Birlikte hayata geçirelim.",
-      ft_d:
-        "İhtiyacınızı anlatın. Bir iş günü içinde net bir yanıt ve yazılı bir teklif alırsınız.",
-      ft_b: "Proje başlat",
-      ft_about:
-        "Almanya merkezli, dünya genelinde çalışan bir dijital stüdyo. İşinize göre modern web siteleri, online mağazalar ve özel web uygulamaları geliştiriyoruz.",
-      ft_top: "Başa dön",
-      ft_c1: "Menü",
-      ft_c2: "Hizmetler",
-      ft_c3: "İletişim",
-      ft_c4: "Bizi takip edin",
-      ft_made: "Made in Germany",
-      ft_copied: "E-posta kopyalandı",
-      es_eb: "Kolay bir ilk adım",
-      es_h1: "Projenizin maliyetinden",
-      es_h2: "emin değil misiniz?",
-      es_d:
-        "Birkaç basit soruyu yanıtlayın, tahmininiz anında oluşsun. Teknik bilgi gerekmez.",
-      es_b: "Hemen hesaplayın",
-      es_p1: "Yaklaşık 1 dakika",
-      es_p2: "Kayıt gerekmez",
-      es_p3: "Bağlayıcı değil",
-      work: "Projeler",
-      services: "Hizmetler",
-      pricing: "Fiyatlar",
-      contact: "İletişim",
-      why: "Neden biz",
-      wk_browse: "Tüm projeleri görün",
-      wk_hide: "Projeleri gizle",
-      wk_pause: "Duraklat",
-      wk_playb: "Oynat",
-      wk_prev: "Önceki proje",
-      wk_nextb: "Sonraki proje",
-      wa_t: "WhatsApp'tan yazın",
-      cta: "Teklif alın",
-      cta_m: "Teklif alın",
-      go: "Git:",
-      pk_eb: "Fiyatlar",
-      pk_h1: "Şeffaf fiyatlar,",
-      pk_h2: "projenize göre.",
-      pk_lead:
-        "Her paket adil bir başlangıç noktasıdır, kalıp bir çözüm değil. Daha azına ihtiyacınız varsa kapsamı da fiyatı da küçültürüz.",
-      pk_ask: "Hedefiniz ne?",
-      pk_best: "Size en uygun paket",
-      pk_get: "Teklif isteyin",
-      pk_talk: "Konuşalım",
-      pk_from: "Başlangıç",
-      pk_once: "tek seferlik",
-      pk_q: "Daha sade mi olsun?",
-      pk_on: "Sade sürüm",
-      pk_off: "",
-      pk_solo: "En sade paketimiz bu.",
-      pk_cap:
-        "Başlangıç fiyatları euro cinsindendir. Başlamadan önce her zaman yazılı bir teklif alırsınız.",
-      pk_cu_t: "Özel projeler",
-      pk_cu_h: "Aklınızda başka bir şey mi var?",
-      pk_cu_d:
-        "Daha geniş bir kapsam, özel entegrasyonlar ya da hiçbir pakete uymayan bir fikir. İhtiyacınızı anlatın; çözümü ve fiyatı ona göre birlikte belirleyelim.",
-      pk_cu_p: "Fiyat, kısa bir görüşmenin ardından belirlenir",
-      pk_m1: "Entegrasyonlar",
-      pk_m2: "Paneller",
-      pk_m3: "Otomasyon",
-      pk_m4: "API'ler",
-      pk_m5: "Veri taşıma",
-      pk_inc: "Her pakete dahil",
-      pk_i1: "Başlamadan önce yazılı teklif",
-      pk_i2: "Her cihazda uyumlu",
-      pk_i3: "Temel SEO kurulumu",
-      pk_i4: "Hosting ve alan adı kurulumu",
-      pk_i5: "Yayından sonra 30 gün destek",
-      pk_fq_h: "Aklınızda soru mu var?",
-      pk_fq_d: "Cevabını bulamadınız mı? Bize doğrudan yazın.",
-      pk_fq_a: "E-posta gönderin",
-      mq_s: "Teklif talebi:",
-      mq_b1: "Merhaba! Şunun için teklif almak istiyorum:",
-      mq_b2: "Projem hakkında kısaca:",
-      mq_c: "Özel proje",
-      wy_eb: "Neden biz?",
-      wy_h1: "İyi iş,",
-      wy_h2: "iyi iletişimle başlar.",
-      wy_lead:
-        "E-postalarınızı aracısız biz yanıtlarız, fiyatı yazılı olarak veririz ve sorunu çözen en basit yolu seçeriz.",
-      wy1t: "Şeffaf",
-      wy1d: "Net kapsam ve anlaşılır fiyatlar.",
-      wy2t: "Kişisel",
-      wy2d: "Gereksiz ara katmanlar olmadan doğrudan iletişim.",
-      wy3t: "Modern",
-      wy3d: "Güncel teknoloji ve çağdaş tasarım yaklaşımı.",
-      wy4t: "Pratik",
-      wy4d: "Popüler terimler değil, işinize gerçekten yarayan çözümler.",
-      wy_o0: "Teklifiniz",
-      wy_o1: "Kapsam",
-      wy_o1v: "5 sayfa",
-      wy_o2: "Süre",
-      wy_o2v: "2 hafta",
-      wy_o3: "Revizyon",
-      wy_o3v: "2 tur",
-      wy_o4: "Fiyat",
-      wy_o4v: "Sabit",
-      wy_o5: "Yazılı",
-      wy_c1: "Ana görseli büyütebilir miyiz?",
-      wy_c2: "Tamamdır, önizleme hazır.",
-      wy_c3: "Bir iş günü içinde yanıt",
-      wy_b1: "Blockchain",
-      wy_b2: "Her yerde yapay zekâ",
-      wy_b3: "Mikroservisler",
-      wy_b4: "Satış yapan basit bir site",
-      wy_e1: "Kulağa iyi geliyor mu?",
-      wy_e2:
-        "Projenizi anlatın. Satış konuşması değil, dürüst bir değerlendirme alırsınız.",
-      wk_eb: "Referanslarımız",
-      wk_h1: "Gerçek projeler,",
-      wk_h2: "gerçek sonuçlar.",
-      wk_lead:
-        "Son projelerimizden bir seçki. Her birinde müşterinin nereden başladığını, neler yaptığımızı ve neyin değiştiğini görebilirsiniz.",
-      wk_all: "Tümü",
-      wk_app: "Web uygulamaları",
-      wk_cnt: "proje",
-      wk_view: "İncele",
-      wk_go: "Başla",
-      wk_more: "Daha fazla proje göster",
-      wk_nt: "Sıradaki proje sizinki olabilir.",
-      wk_nd: "Ne yapmak istediğinizi anlatın.",
-      cs_chal: "Başlangıç noktası",
-      cs_did: "Ne yaptık",
-      cs_res: "Sonuç",
-      cs_tech: "Kullanılan teknolojiler",
-      cs_type: "Müşteri",
-      cs_year: "Yıl",
-      cs_time: "Süre",
-      cs_svc: "Hizmet",
-      cs_next: "Sonraki proje",
-      cs_live: "Canlı siteyi ziyaret et",
-      cs_ct: "Sizin için de yapalım mı?",
-      cs_cb: "Projenizi konuşalım",
-      wa: "Hizmetlerimiz",
-      wb: "İşinize değer katan",
-      wc: "dijital çözümler.",
-      wd:
-        "Hazır bir şablonla başlamayız. Önce müşterileriniz için neyin daha anlaşılır, daha kolay ya da daha değerli olması gerektiğine bakarız.",
-      tg1: "En çok tercih edilen",
-      sv1: "Web siteleri",
-      sd1:
-        "Teklifinizi saniyeler içinde anlatan, güven veren ve doğru kişileri harekete geçiren web siteleri.",
-      sb1: "Strateji ve yapı",
-      sb2: "Mobil uyumlu arayüz tasarımı",
-      sb3: "Dönüşüm odaklı metinler",
-      sb4: "Teknik SEO",
-      tm1: "1–2 hafta",
-      fr1: "Yerel işletmeler, serbest çalışanlar, girişimler",
-      q1: "Web sitesi teklifi alın",
-      tg2: "Online satış için",
-      sv2: "E-ticaret",
-      sd2:
-        "Alışverişi zahmetsiz hâle getiren online mağazalar: net ürün sayfaları, hızlı ödeme ve kolayca yönetebileceğiniz bir altyapı.",
-      sb5: "Ürün ve katalog kurulumu",
-      sb6: "Güvenli ödeme ve tahsilat",
-      sb7: "Kargo, vergi ve faturalar",
-      sb8: "Basit stok yönetimi",
-      tm2: "3–5 hafta",
-      fr2: "Online satışa geçen küçük markalar ve perakendeciler",
-      q2: "Mağaza teklifi alın",
-      tg3: "Özel iş akışları için",
-      sv3: "Web uygulamaları",
-      sd3:
-        "Excel tablolarının ve elle yapılan işlerin yerini alan özel araçlar: ekibinizin gerçek çalışma şekline göre kurulan paneller, portallar ve şirket içi sistemler.",
-      sb9: "Paneller ve raporlama",
-      sb10: "Girişler ve kullanıcı rolleri",
-      sb11: "Entegrasyonlar ve API'ler",
-      sb12: "Tekrarlayan işlerin otomasyonu",
-      tm3: "6–12 hafta",
-      fr3: "Excel'le ve manuel süreçlerle artık idare edemeyen ekipler",
-      q3: "Uygulama teklifi alın",
-      fl1: "Tipik süre",
-      fl2: "Kimler için",
-      wv1: "1 saniyenin altında açılır",
-      wv2: "SEO'ya hazır",
-      wv3: "Mobil öncelikli",
-      sh1: "Sepet",
-      sh2: "Şimdi öde",
-      sh3: "Sipariş onaylandı",
-      sh4: "Toplam",
-      av1: "Kullanıcılar",
-      av2: "Siparişler",
-      av3: "Çalışma süresi",
-      av4: "Bekleyen",
-      av5: "Aktif",
-      av6: "Araçlarınızla senkronize",
-      pt1: "Baştan net fiyat",
-      pd1: "Başlamadan önce maliyeti bilirsiniz.",
-      pt2: "Her şey sizin",
-      pd2: "Kod, içerik ve alan adları size aittir.",
-      pt3: "Düzenli bilgilendirme",
-      pd3: "İşin nerede olduğunu her zaman, sade bir dille bilirsiniz.",
-      pt4: "Yayından sonra destek",
-      pd4: "İhtiyaçlarınız değiştiğinde yanınızdayız.",
-      fh: "Süreç nasıl işliyor?",
-      ft1: "Görüşme",
-      fd1: "Hedefinizi anlamak için ücretsiz bir görüşme.",
-      ft2: "Plan",
-      fd2: "Kapsam, fiyat ve takvim yazılı olarak elinizde.",
-      ft3: "Geliştirme",
-      fd3: "Düzenli önizlemeler, her adımda sizin geri bildiriminiz.",
-      ft4: "Yayın ve bakım",
-      fd4: "Yayına alırız, sonra da sorunsuz çalışmasını sağlarız.",
-      et: "Neye ihtiyacınız olduğundan emin değil misiniz?",
-      ed:
-        "Neyi iyileştirmek istediğinizi anlatın. Daha basit bir çözüm yeterliyse bunu açıkça söyleriz.",
-      c1a: "İşiniz için",
-      c1b: "tasarlandı.",
-      c2a: "Müşteri",
-      c2b: "kazandırır.",
-      c3a: "İlk günden",
-      c3b: "hızlı.",
-      c4a: "Büyümeye",
-      c4b: "hazır.",
-      o1: "Yeni sipariş",
-      o2: "Ödeme",
-      v1: "Performans",
-      v2: "Erişilebilirlik",
-      v3: "SEO",
-      eb: "Almanya merkezli dijital stüdyo, dünya çapında hizmet",
-      l1: "İşinizi",
-      l2: "büyüten",
-      l3: "dijital",
-      words: ["ürünler.", "çözümler.", "mağazalar.", "platformlar."],
-      sub:
-        "İşinize özel modern web siteleri, online mağazalar ve web uygulamaları geliştiriyoruz.",
-      b1: "Proje başlat",
-      b2: "İşlerimizi görün",
-      chip: "Net fikirler. Özenli işçilik.",
-      m1: "Yayına al",
-      m2: "0,4 sn'de yayında",
-      t1: "Web siteleri",
-      t2: "Online mağazalar",
-      t3: "Web uygulamaları",
-      t4: "API'ler",
-      t5: "Otomasyon",
-      sw: "Dili değiştir: {l}",
-      cmd_es: "Fiyat hesaplayıcıyı aç",
-      lang_g: "Dil",
-      meta_t: "yourname – Web ve uygulamalar için dijital stüdyo",
-      meta_d:
-        "Almanya merkezli, dünya genelinde çalışan dijital stüdyodan modern web siteleri, online mağazalar ve özel web uygulamaları.",
-      fx_note:
-        "Gösterge niteliğinde çeviri (kur: {d}); faturalandırma EUR ile yapılır.",
-      al_main: "Ana menü",
-      al_home: "Ana sayfa",
-      al_kbd: "Komut menüsünü aç",
-      al_menu: "Menü",
-      al_mobile: "Mobil menü",
-      al_cmd: "Komut menüsü",
-      al_close: "Kapat",
-      al_prev: "Önceki",
-      al_next: "Sonraki",
-      al_hero: "Stüdyodan öne çıkanlar",
-      al_slide: "Slayt {n}",
-      al_filter: "Filtre",
-      al_projects: "Projeler",
-      al_footer: "Alt bilgi",
-      ph: "Bir bölüme gidin veya bir komut çalıştırın…",
-      none: "Sonuç yok",
-      avail: "Yeni projelere açığız",
-      s1t: "Web uygulamaları",
-      s1d: "Hızlı, erişilebilir arayüzler.",
-      s2t: "Backend ve API'ler",
-      s2d: "Temiz, belgelenmiş servisler.",
-      s3t: "Otomasyon",
-      s3d: "Saatler kazandıran betikler.",
-      h1: "Yayına çıkan yazılımlar geliştiriyorum.",
-      lead:
-        "Demo içerik. Projeler ve Hizmetler'in üzerine gelin, Ctrl/⌘ K'ye basın ve çubuğun hap şekline dönüşmesini izlemek için kaydırın.",
-    },
-  };
-  /* any key missing in a language falls back to English */
-  Object.keys(T).forEach(function (l) {
-    Object.keys(T.en).forEach(function (k) {
-      if (T[l][k] == null) T[l][k] = T.en[k];
-    });
-  });
-  var LNAME = { de: "Deutsch", en: "English", tr: "Türkçe" };
+  var T = window.T,
+    LNAME = window.LNAME;
 
   /* ---- money ----
-     EUR is the real (contract and invoice) currency. Every price on the page
-     goes through formatMoney(). EN and TR visitors also get a small "≈" hint
-     in USD / TRY, converted with the hand-maintained window.RATES (never live).
-     Which language shows which hint, and the number locale: window.CURRENCY.
-       eur  : a number in EUR, or {EUR: 499, TRY: 17900} for a fixed regional
-              price (then that TRY price is shown instead of a conversion)
-       part : "eur"    -> "€499"
-              "alt"    -> "₺17.900"   ("" when there is no hint)
-              "approx" -> "≈ ₺17.900" ("" when there is no hint)
-              omitted  -> "€499 ≈ ₺17.900" (German: just "499 €") */
-  var RATES = window.RATES || {},
-    CUR = window.CURRENCY || { show: {}, locale: {} },
+     Every price on the page is in EUR and goes through formatMoney(), which
+     formats it for the page language ("199 €" in German, "€199" in English).
+     The number locale per language comes from window.CURRENCY. */
+  var CUR = window.CURRENCY || { locale: {} },
     NF = {};
   function locOf(lang) {
     return (CUR.locale && CUR.locale[lang]) || "en-US";
   }
-  function nf(lang, cur) {
-    var k = lang + cur;
-    if (!NF[k]) {
+  function formatMoney(eur, lang) {
+    lang = lang || curLang || "en";
+    if (!NF[lang]) {
       var o = {
         style: "currency",
-        currency: cur,
+        currency: "EUR",
         minimumFractionDigits: 0,
         maximumFractionDigits: 0,
         currencyDisplay: "narrowSymbol",
       };
       try {
-        NF[k] = new Intl.NumberFormat(locOf(lang), o);
+        NF[lang] = new Intl.NumberFormat(locOf(lang), o);
       } catch (e) {
         delete o.currencyDisplay;
-        NF[k] = new Intl.NumberFormat(locOf(lang), o);
+        NF[lang] = new Intl.NumberFormat(locOf(lang), o);
       }
     }
-    return NF[k];
-  }
-  function fxRound(v) {
-    /* indicative only: keep 3 significant digits (94 620 -> 94 600) */
-    var a = Math.abs(v);
-    if (a < 1000) return Math.round(v);
-    var st = Math.pow(10, Math.floor(Math.log(a) / Math.LN10) - 2);
-    return Math.round(v / st) * st;
-  }
-  function altOf(eur, lang) {
-    var cur = CUR.show && CUR.show[lang];
-    if (!cur) return null;
-    if (eur && typeof eur === "object") {
-      if (eur[cur] != null) return { cur: cur, v: eur[cur] };
-      eur = eur.EUR;
-    }
-    var r = +RATES[cur];
-    if (!(r > 0) || !isFinite(eur)) return null;
-    return { cur: cur, v: fxRound(eur * r) };
-  }
-  function formatMoney(eur, lang, part) {
-    lang = lang || curLang || "en";
-    var main = nf(lang, "EUR").format(
-      eur && typeof eur === "object" ? eur.EUR : eur,
-    );
-    if (part === "eur") return main;
-    var a = altOf(eur, lang),
-      alt = a ? nf(lang, a.cur).format(a.v) : "";
-    if (part === "alt") return alt;
-    if (part === "approx") return alt ? "≈ " + alt : "";
-    return alt ? main + " ≈ " + alt : main;
-  }
-  /* the short footnote shown wherever a "≈" hint appears ("" for German) */
-  function fxNote(lang) {
-    lang = lang || curLang || "en";
-    if (!altOf(1, lang)) return "";
-    var d = RATES.updated || "",
-      dt = new Date(d + "T00:00:00");
-    if (!isNaN(dt))
-      d = new Intl.DateTimeFormat(locOf(lang), {
-        day: "numeric",
-        month: "short",
-        year: "numeric",
-      }).format(dt);
-    return T[lang].fx_note.replace("{d}", d);
+    return NF[lang].format(eur);
   }
   function num(n, d) {
     return new Intl.NumberFormat(locOf(curLang || "en"), {
@@ -1012,51 +125,25 @@
     }
   });
 
-  /* ---- language with scramble-decode ---- */
-  var GL = "!<>-_\\/[]{}=+*^?#";
+  /* ---- language ----
+     LANGUAGES: DE / EN / TR, one page per language: "/" is German, "/en/" and
+     "/tr/" are the other two (written by build.mjs from src/index.html). The
+     page language is the <html lang> of the page that was opened; the switcher
+     is a link to the same place on another page. ROOT is the path back to the
+     site root ("" on the German page, "../" on the others). */
   function put(el, txt) {
     el.textContent = txt;
     var p = el.parentElement;
     if (p && p.dataset && p.hasAttribute("data-t")) p.dataset.t = txt;
   }
-  function scramble(el, txt) {
-    if (el._raf) cancelAnimationFrame(el._raf);
-    if (reduce || el.textContent === txt) {
-      put(el, txt);
-      return;
-    }
-    if (el.parentElement.hasAttribute("data-t"))
-      el.parentElement.dataset.t = txt;
-    var t0 = performance.now(),
-      dur = 380 + txt.length * 18;
-    (function tick(now) {
-      var p = Math.min(1, (now - t0) / dur),
-        n = Math.floor(p * txt.length),
-        out = "";
-      for (var i = 0; i < txt.length; i++)
-        out +=
-          i < n || txt[i] === " "
-            ? txt[i]
-            : GL[Math.floor(Math.random() * GL.length)];
-      el.textContent = out;
-      if (p < 1) el._raf = requestAnimationFrame(tick);
-      else put(el, txt);
-    })(t0);
+  var I18N = window.I18N || { langs: ["de", "en", "tr"], lang: "de" },
+    ROOT = document.documentElement.getAttribute("data-root") || "";
+  function langUrl(l) {
+    return l === "de" ? ROOT || "./" : ROOT + l + "/";
   }
-  /* LANGUAGES: DE / EN / TR. The first pick (saved manual choice, then the
-     browser languages, then English) happens in the <head> of index.html
-     (window.I18N), before the first paint. Only a click on the switcher is saved.
-     LANGUAGE LOCK: set LANG_LOCK to "de", "en" or "tr" to force one language;
-     the switcher then hides itself. null = visitors can switch. */
-  var LANG_LOCK = null;
-  var I18N = window.I18N || {
-    langs: ["de", "en", "tr"],
-    key: "langPick",
-    pick: function () {
-      return "en";
-    },
-  };
-  if (LANG_LOCK) document.documentElement.classList.add("lang-locked");
+  function goLang(l) {
+    location.href = langUrl(l) + location.hash;
+  }
   /* phones: some elements (data-i18n-m) use a shorter text, e.g. the bar CTA */
   var MOB = window.matchMedia("(max-width:980px)");
   function i18nKey(el) {
@@ -1070,9 +157,8 @@
   var LANG_BTNS = ".lang button, .lang-pop button",
     langMB = document.getElementById("langMB"),
     langPop = document.getElementById("langPop");
-  function setLang(l, animate, manual) {
-    if (LANG_LOCK) l = LANG_LOCK;
-    if (!T[l]) l = "en";
+  function setLang(l) {
+    if (!T[l]) l = "de";
     curLang = l;
     var d = document.documentElement,
       md = document.querySelector('meta[name="description"]');
@@ -1080,8 +166,7 @@
     document.title = T[l].meta_t;
     if (md) md.setAttribute("content", T[l].meta_d);
     document.querySelectorAll("[data-i18n]").forEach(function (el) {
-      var txt = T[l][i18nKey(el)];
-      animate ? scramble(el, txt) : put(el, txt);
+      put(el, T[l][i18nKey(el)]);
     });
     document.querySelectorAll("[data-i18n-al]").forEach(function (el) {
       el.setAttribute(
@@ -1096,18 +181,13 @@
       document.getElementById("langMT").textContent = l.toLocaleUpperCase(l);
       langMB.setAttribute("aria-label", T[l].lang_g + ": " + LNAME[l]);
     }
-    if (manual)
-      try {
-        localStorage.setItem(I18N.key, l);
-      } catch (e) {}
-    d.classList.remove("i18n-wait");
     onLang();
   }
   document.querySelectorAll(LANG_BTNS).forEach(function (b) {
     b.addEventListener("click", function () {
       var inPop = langPop && langPop.contains(b);
       if (inPop) langOpen(false, true);
-      if (b.dataset.set !== curLang) setLang(b.dataset.set, true, true);
+      if (b.dataset.set !== curLang) goLang(b.dataset.set);
     });
   });
   /* mobile language picker: opens under the button, closes on a choice,
@@ -1142,7 +222,7 @@
       if (!e.matches) langOpen(false);
     });
   }
-  setLang(I18N.lang || I18N.pick(), false);
+  setLang(I18N.lang);
 
   /* ================= v3 JS ================= */
   var curLang;
@@ -1189,7 +269,6 @@
   links.addEventListener("focusout", function (e) {
     if (!links.contains(e.relatedTarget)) pillTo(null);
   });
-  function megaClose() {}
 
   /* command palette */
   var cmd = document.getElementById("cmd"),
@@ -1239,17 +318,16 @@
         window.open(waHref(), "_blank", "noopener");
       },
     });
-    if (!LANG_LOCK)
-      I18N.langs.forEach(function (o) {
-        if (o === curLang) return;
-        c.push({
-          label: t.sw.replace("{l}", LNAME[o]),
-          hint: o.toLocaleUpperCase(curLang),
-          run: function () {
-            setLang(o, true, true);
-          },
-        });
+    I18N.langs.forEach(function (o) {
+      if (o === curLang) return;
+      c.push({
+        label: t.sw.replace("{l}", LNAME[o]),
+        hint: o.toLocaleUpperCase(curLang),
+        run: function () {
+          goLang(o);
+        },
       });
+    });
     return c;
   }
   function low(s) {
@@ -1831,6 +909,43 @@
     n.style.transitionDelay = i * 0.05 + "s";
     ioStep.observe(n);
   });
+
+  /* ================= shareable URLs =================
+     "#work/<project id>" opens that case study and "#estimate" opens the
+     estimator, so both can be linked to. Opening adds one history entry: the
+     browser's back button closes it again. */
+  var routing = false;
+  function routePush(h, replace) {
+    if (routing || location.hash === h) return;
+    try {
+      if (replace) history.replaceState(history.state, "", h);
+      else history.pushState({ ov: 1 }, "", h);
+    } catch (e) {}
+  }
+  function routeClear() {
+    if (routing || !/^#(work\/|estimate$)/.test(location.hash)) return;
+    if (history.state && history.state.ov) history.back();
+    else
+      try {
+        history.replaceState(null, "", location.pathname + location.search);
+      } catch (e) {}
+  }
+  function routeApply() {
+    var m = /^#work\/(.+)$/.exec(location.hash),
+      i = -1;
+    if (m)
+      PJ.forEach(function (p, k) {
+        if (p.id === m[1]) i = k;
+      });
+    routing = true;
+    if (i < 0) closeCase();
+    else if (!cs.classList.contains("open")) openCase(i);
+    else if (WK.open !== i) fillCase(i);
+    if (location.hash === "#estimate") eOpen();
+    else eClose();
+    routing = false;
+  }
+  window.addEventListener("popstate", routeApply);
 
   /* ================= v7 WORK JS ================= */
   var PJ = window.PROJECTS || [],
@@ -2609,6 +1724,7 @@
     setTimeout(function () {
       document.getElementById("csX").focus();
     }, 500);
+    routePush("#work/" + PJ[i].id);
   }
   function closeCase() {
     if (!cs.classList.contains("open")) return;
@@ -2621,10 +1737,12 @@
       cs.inert = true;
     }, 900);
     if (WK.from && WK.from.focus) WK.from.focus({ preventScroll: true });
+    routeClear();
   }
   function stepCase(d) {
     var i = (WK.open + d + PJ.length) % PJ.length;
     fillCase(i);
+    routePush("#work/" + PJ[i].id, true);
     csScroll.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
   }
   document.getElementById("csX").addEventListener("click", closeCase);
@@ -3093,15 +2211,7 @@
     CL2 =
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
   function fmt(n) {
-    return formatMoney(n, curLang, "eur");
-  }
-  /* "≈" hint + footnote into an element, hidden when there is none */
-  function fxPut(el, approx) {
-    var n = approx ? fxNote() : "";
-    el.hidden = !approx;
-    el.innerHTML = approx
-      ? "<span>" + esc(approx) + "</span><small>" + esc(n) + "</small>"
-      : "";
+    return formatMoney(n);
   }
   function planById(id) {
     return PR.plans.filter(function (p) {
@@ -3278,9 +2388,7 @@
         esc(t.pk_once) +
         '</span></span><b class="pk-amt">' +
         fmt(priceOf(p)) +
-        '</b><span class="pk-fx">' +
-        esc(formatMoney(priceOf(p), curLang, "approx")) +
-        "</span></div>";
+        "</b></div>";
       h += p.lite
         ? '<div class="pk-flex"><label class="pk-sw"><input type="checkbox" role="switch"' +
           (lite ? " checked" : "") +
@@ -3371,11 +2479,6 @@
       li.classList.toggle("off", on && p.feats[k].lite === false);
     });
     amt._t = priceOf(p);
-    c.querySelector(".pk-fx").textContent = formatMoney(
-      priceOf(p),
-      curLang,
-      "approx",
-    );
     fitAll();
     countAmt(amt, priceOf(p), true);
     c.querySelector(".pk-go").href = planMail(p);
@@ -3513,12 +2616,6 @@
     [].forEach.call(document.querySelectorAll("[data-from]"), function (el) {
       var pl = planById(el.dataset.from);
       el.textContent = pl ? TT("pk_from") + " " + formatMoney(pl.price) : "";
-      if (fxNote()) el.title = fxNote();
-      else el.removeAttribute("title");
-    });
-    [].forEach.call(document.querySelectorAll("[data-fx]"), function (el) {
-      el.textContent = fxNote();
-      el.hidden = !el.textContent;
     });
     renderGoals();
     renderPlans();
@@ -3763,10 +2860,6 @@
           ? eu("talk")
           : "€ – –";
     });
-    eQ("fx").forEach(function (el) {
-      var a = c ? formatMoney(c.lo, curLang, "approx") : "";
-      fxPut(el, a && a + " – " + formatMoney(c.hi, curLang, "alt"));
-    });
     eQ("time").forEach(function (el) {
       el.textContent = c ? eSpan(c.wk) : "–";
     });
@@ -3940,7 +3033,7 @@
       h = head(un ? "q_unsure" : "q_res", un ? "q_unsure_s" : "q_res_s");
       if (!un)
         h +=
-          '<div class="es-sum"><div class="es-lbl"><span data-es-t="est_l"></span><span data-es="time" class="es-rt"></span></div><div class="es-big" data-es="big"><b data-es="lo"></b><b data-es="hi"></b></div><p class="es-fx" data-es="fx" hidden></p><ul class="es-lines" data-es="lines"></ul></div>';
+          '<div class="es-sum"><div class="es-lbl"><span data-es-t="est_l"></span><span data-es="time" class="es-rt"></span></div><div class="es-big" data-es="big"><b data-es="lo"></b><b data-es="hi"></b></div><ul class="es-lines" data-es="lines"></ul></div>';
       h += E.sent ? okHTML() : formHTML(un);
     }
     return h;
@@ -3971,11 +3064,15 @@
       AR2 +
       AR2 +
       "</span></button></div>" +
+      '<input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" hidden>' +
+      '<p class="es-err es-serr full" id="esSe" role="alert"></p>' +
       '<p class="es-fine full">' +
       esc(eu("fine")) +
       "</p>" +
       '<div class="es-alt full"><button type="button" class="es-lk" data-a="wa">' +
       esc(eu("wa")) +
+      '</button><button type="button" class="es-lk" data-a="mail">' +
+      esc(eu("mail")) +
       '</button><button type="button" class="es-lk" data-a="copy">' +
       esc(eu("copy")) +
       '</button><button type="button" class="es-lk" data-a="reset">' +
@@ -3986,9 +3083,17 @@
   function okHTML() {
     return (
       '<div class="es-ok"><span class="es-tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><h3>' +
-      esc(ef(eu("ok_h"), { name: E.name.split(" ")[0] })) +
+      esc(
+        ef(eu(E.sent === "api" ? "ok_h2" : "ok_h"), {
+          name: E.name.split(" ")[0],
+        }),
+      ) +
       "</h3><p>" +
-      esc(ef(eu("ok_p"), { email: PR.email })) +
+      esc(
+        E.sent === "api"
+          ? ef(eu("ok_p2"), { email: E.email })
+          : ef(eu("ok_p"), { email: PR.email }),
+      ) +
       "</p>" +
       '<div class="es-alt"><button type="button" class="es-lk" data-a="wa">' +
       esc(eu("wa")) +
@@ -4186,15 +3291,60 @@
       (n ? form.elements.email : form.elements.name).focus();
       return;
     }
-    var t = eType();
-    E.sent = true;
+    /* window.FORM.key set: the request is posted to the form service and lands
+       in your inbox. No key (or the request fails): the visitor's own email
+       app opens with everything filled in, as before. */
+    var key = (window.FORM && window.FORM.key) || "",
+      sub = eu("s_title") + ": " + L(eType().t);
+    if (!key) {
+      eDone("mail");
+      location.href = mailHref(sub, eSummary());
+      return;
+    }
+    var btn = form.querySelector(".es-send"),
+      se = form.querySelector("#esSe"),
+      lbl = btn.querySelector(".roll span"),
+      old = lbl.textContent;
+    if (btn.disabled) return;
+    btn.disabled = true;
+    se.textContent = "";
+    lbl.textContent = eu("sending");
+    var fail = function () {
+      btn.disabled = false;
+      lbl.textContent = old;
+      se.textContent = eu("e_send");
+    };
+    fetch(window.FORM.url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        access_key: key,
+        subject: sub,
+        from_name: n,
+        name: n,
+        email: m,
+        replyto: m,
+        message: eSummary(),
+        botcheck: form.elements.botcheck.checked,
+      }),
+    })
+      .then(function (r) {
+        return r.json();
+      })
+      .then(function (j) {
+        if (j && j.success) eDone("api");
+        else fail();
+      })
+      .catch(fail);
+  }
+  function eDone(how) {
+    E.sent = how;
     eRender(1, false);
     var h = esBody.querySelector(".es-ok h3");
     if (h) {
       h.setAttribute("tabindex", "-1");
       h.focus({ preventScroll: true });
     }
-    location.href = mailHref(eu("s_title") + ": " + L(t.t), eSummary());
   }
 
   /* ---- open / close ---- */
@@ -4211,6 +3361,7 @@
         if (h) h.focus({ preventScroll: true });
       }, 80);
     });
+    routePush("#estimate");
   }
   function eClose() {
     if (!esEl.classList.contains("open")) return;
@@ -4219,6 +3370,7 @@
     esEl.inert = true;
     document.documentElement.classList.remove("es-lock");
     if (esLast && esLast.focus) esLast.focus({ preventScroll: true });
+    routeClear();
   }
   document.addEventListener("click", function (e) {
     var o = e.target.closest && e.target.closest("[data-es-open]");
@@ -4242,6 +3394,11 @@
       E = E0();
       esKeys = {};
       eRender(-1);
+    } else if (a.dataset.a === "mail") {
+      location.href = mailHref(
+        eu("s_title") + ": " + L(eType().t),
+        eSummary(),
+      );
     } else if (a.dataset.a === "wa") {
       window.open(waHref(eSummary()), "_blank", "noopener");
     } else if (a.dataset.a === "copy") {
@@ -4376,7 +3533,6 @@
     miT = document.getElementById("emT"),
     miH = document.getElementById("emH"),
     miS = document.getElementById("emS"),
-    miX = document.getElementById("emX"),
     miI = 0,
     miTm = null,
     miVis = false;
@@ -4407,7 +3563,6 @@
       })
       .join("");
     eTw(miT, c.total, "≈ ");
-    miX.textContent = formatMoney(c.total, curLang, "approx");
   }
   function miInit() {
     miH.textContent = eu("mini_h");
@@ -4502,17 +3657,10 @@
       esc(t.ft_c3) +
       "</h4><ul>" +
       ftLinks(FT.contact) +
-      "</ul></div>" +
-      '<div class="ft-col"><h4>' +
-      esc(t.ft_c4) +
-      "</h4><ul>" +
-      ftLinks(FT.social) +
       "</ul></div>";
     ftLegal.innerHTML = FT.legal
       .map(function (l) {
-        return l.cookies
-          ? '<button type="button" data-cookies>' + esc(L(l.t)) + "</button>"
-          : '<a href="' + esc(l.href) + '">' + esc(L(l.t)) + "</a>";
+        return '<a href="' + esc(ROOT + l.href) + '">' + esc(L(l.t)) + "</a>";
       })
       .join("");
     document.getElementById("ftMade").textContent =
@@ -4548,13 +3696,6 @@
   document.getElementById("ftStart").addEventListener("click", function (e) {
     e.preventDefault();
     jump("pricing");
-  });
-  ftLegal.addEventListener("click", function (e) {
-    if (e.target.closest("[data-cookies]")) {
-      /* hook your cookie banner here */ document.dispatchEvent(
-        new CustomEvent("open-cookie-settings"),
-      );
-    }
   });
   [].forEach.call(document.querySelectorAll(".ft-rise,.ft-mark"), function (n) {
     ioIn.observe(n);
@@ -4682,7 +3823,7 @@
   }
   function fitHeads() {
     chipClear();
-    var langs = LANG_LOCK ? [curLang] : I18N.langs,
+    var langs = I18N.langs,
       tx = [].slice.call(document.querySelectorAll("[data-i18n]")),
       keep = tx.map(function (x) {
         return x.textContent;
@@ -4756,5 +3897,6 @@
   fitHeads();
   window.__wkReady = true;
   onLang();
+  routeApply();
   onScroll();
 })();

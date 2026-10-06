@@ -1548,6 +1548,19 @@ window.PRICING = {
       copy: ["Copy summary", "Zusammenfassung kopieren", "Özeti kopyala"],
       copied: ["Copied", "Kopiert", "Kopyalandı"],
       reset: ["Start over", "Neu starten", "Baştan başla"],
+      mail: ["Send by email", "Per E-Mail senden", "E-posta ile gönder"],
+      sending: ["Sending…", "Wird gesendet…", "Gönderiliyor…"],
+      e_send: [
+        "That did not go through. Please try again, or use one of the options below.",
+        "Das hat leider nicht geklappt. Versuch es bitte noch einmal oder nutze eine der Optionen unten.",
+        "Gönderilemedi. Lütfen tekrar deneyin ya da aşağıdaki seçeneklerden birini kullanın.",
+      ],
+      ok_h2: ["Thank you, {name}!", "Danke, {name}!", "Teşekkürler, {name}!"],
+      ok_p2: [
+        "Your request has reached us. You will get a reply at {email} within one working day.",
+        "Deine Anfrage ist bei uns angekommen. Du bekommst innerhalb eines Werktags eine Antwort an {email}.",
+        "Talebiniz bize ulaştı. Bir iş günü içinde {email} adresine yanıt alacaksınız.",
+      ],
       ok_h: [
         "Almost done, {name}!",
         "Fast geschafft, {name}!",
@@ -1586,11 +1599,33 @@ window.PRICING = {
   };
 })();
 /* ==========================================================================
-   FOOTER  -  edit links, company name and legal pages here.
-   href values are PLACEHOLDERS: point them to your real pages
-   (for example /impressum, /datenschutz). Texts are ['English','Deutsch','Türkçe'].
-   German law (DDG / DSGVO) requires at least an Impressum and a privacy
-   policy on commercial sites; have them written or checked by a professional.
+   SITE  -  the public address of the site. build.mjs uses it for everything
+   search engines and link previews read: canonical and hreflang links, the
+   sitemap, Open Graph tags and the structured data.
+   PLACEHOLDER: put your real domain here (no slash at the end), then run
+   "node build.mjs" again.
+   ========================================================================== */
+window.SITE = {
+  url: "https://www.yourdomain.com",
+  name: "Yourname",
+};
+/* ==========================================================================
+   FORM  -  where the estimator sends a request. The site has no server of its
+   own; a form service forwards each request to your inbox.
+   key : your free access key from https://web3forms.com (it is meant to be
+         public). While it is empty, the form opens the visitor's own email
+         app with everything filled in instead.
+   ========================================================================== */
+window.FORM = {
+  url: "https://api.web3forms.com/submit",
+  key: "",
+};
+/* ==========================================================================
+   FOOTER  -  edit links, company name and contact details here.
+   Texts are ['English','Deutsch','Türkçe']. The legal pages live in
+   src/legal/ (German law, DDG / DSGVO, requires at least an Impressum and a
+   privacy policy on commercial sites; have them written or checked by a
+   professional).
    ========================================================================== */
 window.FOOTER = {
   name: "Yourname",
@@ -1643,58 +1678,23 @@ window.FOOTER = {
       ],
     },
   ],
-  social: [
-    {
-      t: ["LinkedIn", "LinkedIn", "LinkedIn"],
-      href: "https://www.linkedin.com/",
-      ext: 1,
-    },
-    { t: ["GitHub", "GitHub", "GitHub"], href: "https://github.com/", ext: 1 },
-    {
-      t: ["Instagram", "Instagram", "Instagram"],
-      href: "https://www.instagram.com/",
-      ext: 1,
-    },
-  ],
   legal: [
     {
       t: ["Legal notice (Impressum)", "Impressum", "Künye (Impressum)"],
-      href: "/impressum",
+      href: "impressum/",
     },
     {
       t: ["Privacy policy", "Datenschutzerklärung", "Gizlilik politikası"],
-      href: "/datenschutz",
+      href: "datenschutz/",
     },
-    { t: ["Terms (AGB)", "AGB", "Genel şartlar (AGB)"], href: "/agb" },
-    {
-      t: ["Cookie settings", "Cookie-Einstellungen", "Çerez ayarları"],
-      href: "#cookies",
-      cookies: true,
-    },
+    { t: ["Terms (AGB)", "AGB", "Genel şartlar (AGB)"], href: "agb/" },
   ],
 };
 /* ==========================================================================
-   RATES  -  hand-maintained exchange rates for the "≈" hint next to prices.
-   EUR is the real (contract and invoice) currency. Nothing is fetched live:
-   update the numbers and the date yourself. 1 EUR = <value> units.
-   The values below are PLACEHOLDERS (1.00). While a rate is missing or not a
-   positive number, no "≈" hint is shown for that currency.
-   ========================================================================== */
-window.RATES = {
-  updated: "2026-10-01",
-  base: "EUR",
-  USD: 1.0,
-  TRY: 1.0,
-};
-/* ==========================================================================
-   CURRENCY  -  which hint currency each language shows next to EUR, and the
-   locale used to format numbers. null = EUR only (no hint).
-   Regional pricing later: a price may also be an object such as
-   { EUR: 499, TRY: 17900 }. formatMoney() in js/app.js then shows that fixed
-   TRY price instead of converting with RATES. Nothing else has to change.
+   CURRENCY  -  all prices are in EUR. "locale" only decides how a number is
+   written per language ("199 €" in German, "€199" in English).
    ========================================================================== */
 window.CURRENCY = {
   base: "EUR",
-  show: { de: null, en: "USD", tr: "TRY" },
   locale: { de: "de-DE", en: "en-US", tr: "tr-TR" },
 };

@@ -1,3 +1,38 @@
+/* Fonts are served from this site (fonts/), not from Google: no visitor data
+   leaves for a third party. Both are variable fonts under the SIL Open Font
+   License. "latin-ext" carries the Turkish letters. */
+@font-face {
+  font-family: "Instrument Sans";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("../fonts/instrument-sans-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Instrument Sans";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("../fonts/instrument-sans-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Syne";
+  font-style: normal;
+  font-weight: 700 800;
+  font-display: swap;
+  src: url("../fonts/syne-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Syne";
+  font-style: normal;
+  font-weight: 700 800;
+  font-display: swap;
+  src: url("../fonts/syne-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 :root {
   --bg: #0d0e0c;
   --surface: #151713;
@@ -37,6 +72,32 @@ button {
   outline: 2px solid var(--lime);
   outline-offset: 3px;
   border-radius: 10px;
+}
+
+/* keyboard users: first Tab shows a link that jumps past the navigation */
+.skip {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 200;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: var(--lime);
+  color: var(--ink);
+  font-weight: 600;
+  transform: translateY(-200%);
+}
+.skip:focus {
+  transform: none;
+}
+.nojs {
+  position: relative;
+  z-index: 100;
+  padding: 14px 20px;
+  background: var(--lime);
+  color: var(--ink);
+  text-align: center;
+  font-weight: 500;
 }
 
 /* ================= NAVBAR ================= */
@@ -510,6 +571,16 @@ a:focus-visible .roll::after {
 /* the logo word hides earlier so the mobile language button always fits */
 @media (max-width: 480px) {
   .logo-text {
+    display: none;
+  }
+}
+/* German labels are the longest: give the folded bar more room, and drop the
+   logo word on small laptops, so the links never run into the logo */
+:lang(de) .scrolled .nav {
+  max-width: 1140px;
+}
+@media (min-width: 981px) and (max-width: 1099px) {
+  :lang(de) .nav .logo-text {
     display: none;
   }
 }
@@ -6406,6 +6477,13 @@ html.es-lock body {
   height: 64px;
   width: 100%;
 }
+.es-serr:empty {
+  display: none;
+}
+.es-send:disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
 .es-fine {
   font-size: 0.82rem;
   line-height: 1.45;
@@ -6887,7 +6965,7 @@ html.es-lock body {
     grid-column: 1/-1;
   }
   .ft-cols {
-    grid-template-columns: 0.8fr 0.9fr 1.5fr 0.9fr;
+    grid-template-columns: 0.8fr 0.9fr 1.5fr;
   }
   .ft-cols .ft-col:nth-child(3) {
     grid-column: auto;
@@ -7508,58 +7586,6 @@ body.menu-open .wa {
   }
 }
 
-/* language switch hidden while LANG_LOCK is set */
-.lang-locked .lang {
-  display: none !important;
-}
-
-/* ===== v15: three languages (DE / EN / TR) + "≈" currency hint ===== */
-/* set in <head> for non-English visitors until js/app.js has swapped the texts */
-.i18n-wait [data-i18n] {
-  visibility: hidden;
-}
-.pk-fx {
-  font-size: 0.85rem;
-  color: var(--mut);
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
-}
-.pk-fx:empty {
-  display: none;
-}
-.pk-fxn {
-  margin-top: 2px;
-  font-size: 0.8rem;
-}
-.es-fx {
-  display: grid;
-  gap: 2px;
-  margin-top: 8px;
-  font-size: 0.85rem;
-  line-height: 1.35;
-  color: rgba(243, 244, 238, 0.62);
-  font-variant-numeric: tabular-nums;
-}
-.es-fx[hidden] {
-  display: none;
-}
-.es-fx small {
-  font-size: 0.75rem;
-  color: rgba(243, 244, 238, 0.5);
-}
-.em-t {
-  flex-wrap: wrap;
-  row-gap: 2px;
-}
-.em-x {
-  flex-basis: 100%;
-  text-align: right;
-  font-size: 0.8rem;
-  color: rgba(243, 244, 238, 0.6);
-}
-.em-x:empty {
-  display: none;
-}
 /* reduced motion turns every transition into 0.01ms, which still delays a
    font-size change by a frame; the headline/price fitters (js/app.js) would
    then measure the old size and shrink too far. No transitions while fitting. */
@@ -7728,4 +7754,102 @@ body.menu-open .wa {
 /* footer language switch */
 .ft-lang {
   margin-left: -8px;
+}
+
+/* ================= simple text pages (Impressum, Datenschutz, AGB) ================= */
+.pg {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.pg-top,
+.pg-main,
+.pg-foot {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.pg-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+.pg-back {
+  padding: 10px 18px;
+  border: 1px solid rgba(243, 244, 238, 0.2);
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition:
+    background 0.25s,
+    color 0.25s;
+}
+.pg-back:hover,
+.pg-back:focus-visible {
+  background: var(--bone);
+  color: var(--ink);
+}
+.pg-main {
+  flex: 1;
+  padding-top: 40px;
+  padding-bottom: 80px;
+}
+.pg-main h1 {
+  font-family: var(--display);
+  font-size: clamp(2rem, 6vw, 3.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+.pg-main h2 {
+  margin: 44px 0 12px;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+.pg-main p {
+  max-width: 62ch;
+  color: rgba(243, 244, 238, 0.78);
+}
+.pg-main p + p {
+  margin-top: 12px;
+}
+.pg-main a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.pg-main .ph {
+  color: rgba(243, 244, 238, 0.5);
+}
+.pg-note {
+  margin-top: 24px;
+  padding: 14px 18px;
+  border-left: 3px solid var(--lime);
+  border-radius: 0 12px 12px 0;
+  background: var(--surface);
+}
+.pg-foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px 24px;
+  padding-top: 24px;
+  padding-bottom: 32px;
+  border-top: 1px solid rgba(243, 244, 238, 0.12);
+  font-size: 0.85rem;
+  color: rgba(243, 244, 238, 0.6);
+}
+.pg-foot nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
+.pg-foot a:hover,
+.pg-foot a:focus-visible {
+  color: var(--bone);
 }
